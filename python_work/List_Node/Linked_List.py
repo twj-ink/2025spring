@@ -1,3 +1,6 @@
+from sympy.testing.runtests import newname
+
+
 class Node:
     def __init__(self,value,next=None):
         self.value=value
@@ -139,3 +142,75 @@ b.show()
 b.delete(2)
 b.show()
 
+class CircleLinkedList:
+    class Node:
+        def __init__(self,value,next=None):
+            self.value=value
+            self.next=next
+
+    def __init__(self):
+        self.tail=None
+        self.size=0
+
+    def isEmpty(self):
+        return self.size==0
+
+    def prepend(self,value):
+        newNode=Node(value)
+        if self.isEmpty():
+            self.tail=newNode
+            newNode.next=self.tail
+        else:
+            newNode.next=self.tail.next
+            self.tail.next=newNode
+        self.size+=1
+
+    def append(self,value):
+        newNode=Node(value)
+        if self.isEmpty():
+            self.tail=newNode
+            newNode.next=self.tail
+        else:
+            newNode.next=self.tail.next
+            self.tail.next=newNode
+            self.tail=newNode
+        self.size+=1
+
+    def popFront(self):
+        if self.isEmpty():
+            return None
+        old_head=self.tail.next.value
+        if self.size==1:
+            self.tail=None
+        else:
+            self.tail.next=old_head.next
+        self.size-=1
+        return old_head
+
+    def popBack(self):
+        if self.isEmpty():
+            return None
+        old_tail=self.tail.value
+        if self.size==1:
+            return old_tail
+        cur=self.tail.next
+        while cur.next!=self.tail:
+            cur=cur.next
+        cur.next=self.tail.next
+        self.tail=cur
+        return old_tail
+
+    def show(self):
+        cur=self.tail.next
+        while True:
+            print(cur.value,end='-' if cur!=self.tail else '\n')
+            if cur==self.tail:
+                break
+            cur=cur.next
+
+c=CircleLinkedList()
+c.append(1)
+c.append(2)
+c.append(3)
+c.popBack()
+c.show()
