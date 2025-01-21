@@ -54,9 +54,87 @@
 #
 # print(f"CPU 运行时间: {end_time2 - start_time2:.20f} 秒")
 ############################################################
-##### Codeforces Round 997 #####
-#### A ####
+# n=int(input())
+# a=list(map(int,input().split()))
+# b=list(map(int,input().split()))
+# dp=[[0]*n for _ in range(n)]
+# dp[0][0]=1 if a[0]==b[0] else 0
+# for i in range(1,n):
+#     dp[i][0]=max(dp[i-1][0]+1,dp[i][0]) if a[i]==b[0] else dp[i-1][0]
+# for j in range(1,n):
+#     dp[0][j]=max(dp[0][j-1]+1,dp[0][j]) if b[j]==a[0] else dp[0][j-1]
+# for i in range(1,n):
+#     for j in range(1,n):
+#         if a[i]==b[j]:
+#             dp[i][j]=max(dp[i-1][j-1]+1,dp[i-1][j],dp[i][j-1])
+#         else:
+#             dp[i][j]=max(dp[i-1][j],dp[i][j-1])
+# print(dp[-1][-1])
+##########################################################
 
-#### B ####
+### Codeforces Round 998(Div.3) ###
+### A ###
+# for _ in range(int(input())):
+#     a,b,c,d=map(int,input().split())
+#     s=set()
+#     s.add(a+b)
+#     s.add(c-b)
+#     s.add(d-c)
+#     print(4-len(s))
+#
 
-#### C ####
+### B ###
+# for _ in range(int(input())):
+#     n,m=map(int,input().split())
+#     s=[]
+#     for _ in range(n):
+#         s.append((_+1,(sorted(list(map(int,input().split()))))))
+#         s.sort(key=lambda x:x[1])
+#     curr=0
+#     f=True
+#     for j in range(m):
+#         if f:
+#             for i in range(n):
+#                 if s[i][1][j]!=curr:
+#                     f=False
+#                     break
+#                 curr+=1
+#     ans=[]
+#     for i in range(n):
+#         ans.append(s[i][0])
+#     print(' '.join(map(str,ans)) if f else -1)
+
+### C ###
+# for _ in range(int(input())):
+#     n,k=map(int,input().split())
+#     s=sorted(list(map(int,input().split())))
+#     i,j=0,n-1
+#     cnt=0
+#     while i<j:
+#         if s[i]+s[j]<k:
+#             i+=1
+#         elif s[i]+s[j]>k:
+#             j-=1
+#         else:
+#             i+=1
+#             j-=1
+#             cnt+=1
+#     print(cnt)
+
+### D ###
+# for _ in range(int(input())):
+#     n=int(input())
+#     s=list(map(int,input().split()))
+#     if s==sorted(s) or n==1:
+#         print('YES')
+#         continue
+#     if n>=2 and s[0]>s[1]:
+#         print('NO')
+#         continue
+#     for i in range(n-2):
+#         s[i+1]-=s[i]
+#         if s[i+1]>s[i+2]:
+#             print('NO')
+#             break
+#     else:
+#         print('YES')

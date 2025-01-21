@@ -41,30 +41,32 @@ class LinkList:  #循环链表
 			print("")
 
 	def remove(self,data):
-		if self.size==0:
+		if self.isEmpty():
 			return None
-		cur=self.tail.next
-		if cur==self.tail:
-			if cur.data==data:
+		if self.size==1:
+			if self.tail.data==data:
 				self.tail=None
 				self.size-=1
 				return True
 			else:
 				return False
 		else:
+			cur=self.tail.next
 			if cur.data==data:
+				self.tail.next=cur.next
 				self.size-=1
-				new=cur.next
-				self.tail.next=new
 				return True
 			else:
-				while cur.next!=self.tail:
+				while cur.next!=self.tail.next:
 					if cur.next.data==data:
-						self.size-=1
 						cur.next=cur.next.next
+						if self.tail.data==data:
+							self.tail=cur
+						self.size-=1
 						return True
 					cur=cur.next
 				return False
+
 
 t = int(input())
 for i in range(t):
