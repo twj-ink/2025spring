@@ -1,3 +1,4 @@
+from typing import List
 # # from math import gcd
 #
 # class Fraction:
@@ -166,10 +167,13 @@
 # if __name__ == "__main__":
 #     p = int(input().strip())
 #     solve_mersenne_number(p)
-name,weight='Alice',120.2
-print(f'{name} weighs {weight:.2f}')
-n=42
-print(f'{n:x>10}')
-n=255222
-print(f'二进制: {n:b}, 八进制: {n:o}, 十六进制 {n:x}')
-print(f'{n:;}')
+####################################################
+# name,weight='Alice',120.2
+# print(f'{name} weighs {weight:.2f}')
+# n=42
+# print(f'{n:x>10}')
+# n=255222
+# print(f'二进制: {n:b}, 八进制: {n:o}, 十六进制 {n:x}')
+# print(f'{n:;}')
+###################################################
+print(0^0)
