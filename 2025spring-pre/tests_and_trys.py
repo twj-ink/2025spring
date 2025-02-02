@@ -176,4 +176,14 @@ from typing import List
 # print(f'二进制: {n:b}, 八进制: {n:o}, 十六进制 {n:x}')
 # print(f'{n:;}')
 ###################################################
-print(0^0)
+n=int(input())
+s=list(map(int,input().split()))
+a=set()
+for i in range(n):
+    if s[i] not in a:
+        a.add(s[i])
+    else:
+        while s[i] in a:
+            s[i]+=1
+        a.add(s[i])
+print(*s)
