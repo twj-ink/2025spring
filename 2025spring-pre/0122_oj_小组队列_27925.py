@@ -13,10 +13,13 @@ while True:
         break
     if s.startswith('ENQUEUE'):
         num=s.split()[1]
-        idx=d[num]
-        inner[idx].append(num)
-        if len(inner[idx])==1:
-            outer.append(inner[idx])
+        if num in d:
+            idx=d[num]
+            inner[idx].append(num)
+            if len(inner[idx])==1:
+                outer.append(inner[idx])
+        else:
+            outer.append(deque([num]))
     else:
         if outer and outer[0]:
             out=outer[0].popleft()

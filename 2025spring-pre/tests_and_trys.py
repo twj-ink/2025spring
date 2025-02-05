@@ -176,14 +176,208 @@ from typing import List
 # print(f'二进制: {n:b}, 八进制: {n:o}, 十六进制 {n:x}')
 # print(f'{n:;}')
 ###################################################
-n=int(input())
-s=list(map(int,input().split()))
-a=set()
-for i in range(n):
-    if s[i] not in a:
-        a.add(s[i])
+# import math
+# n=int(input())
+# a=math.floor(n**0.5)
+# ans=float('inf')
+# for i in range(1,a+1):
+#     if n/i==n//i:
+#         ans=min(ans,2*(i+n//i))
+# print(ans)
+
+# print(ord('A'),ord('Z')) 65 90
+# s=input()
+# ans=''
+# for i in s:
+#     if ord('A')<=ord(i)<=ord('Z'):
+#         p=ord(i)-5
+#         if p>=65:
+#             ans+=chr(p)
+#         else:
+#             # print(i,i)
+#             r=65-p-1 #e-69,69-5=64,
+#             rr=90-r
+#             ans+=chr(rr)
+#     else:
+#         ans+=i
+# print(ans)
+#
+# from decimal import Decimal
+# a,b=map(float,input().split())
+# ans=a*b/666.667
+#
+# print(format(ans,'.4f'))
+
+# n=int(input())
+# s=list(map(int,input().split()))
+# s.reverse()
+# while len(s)>1:
+#     a=s.pop()
+#     b=s.pop()
+#     r=abs(a-b)
+#     s.append(r)
+# print(s[0])
+
+# n=int(input())
+# s=[]
+# for _ in range(n):
+#     a,b=input().split()
+#     b=int(b)
+#     s.append((a,b))
+# s.sort(key=lambda x:x[1])
+# for i in s:
+#     print(*i)
+# dx,dy=[0,-1,1,0],[-1,0,0,1]
+# from collections import deque
+# def bfs(s,sx,sy,ex,ey,m):
+#     q=deque()
+#     q.append((sx,sy))
+#     inq=set()
+#     inq.add((sx,sy))
+#     step=0
+#     while q:
+#         for _ in range(len(q)):
+#             x,y=q.popleft()
+#             for i in range(4):
+#                 nx,ny=x+dx[i],y+dy[i]
+#                 if (nx,ny)==(ex,ey):
+#                     if step<m:
+#                         return 'YES'
+#                     else:
+#                         return 'NO'
+#                 if 0<=nx<n and 0<=ny<n and (nx,ny) not in inq and s[nx][ny]=='.':
+#                     inq.add((nx,ny))
+#                     q.append((nx,ny))
+#             step+=1
+#     return 'NO'
+#
+# for _ in range(int(input())):
+#     n,m=map(int,input().split())
+#     s=[]
+#     for i in range(n):
+#         l=input()
+#         if 'S' in l:
+#             sx=i
+#             sy=l.index('S')
+#         if 'E' in l:
+#             ex=i
+#             ey=l.index('E')
+#         s.append(l)
+#     print(bfs(s,sx,sy,ex,ey,m))
+
+# for _ in range(int(input())):
+#     n=int(input())
+#     s=[]
+#     for _ in range(n):
+#         a,b=map(int,input().split())
+#         s.append((a,b))
+#     s=list(set(s))
+#     s.sort()
+#     cnt=0
+#     if len(s)>=4:
+#         for i in range(len(s)-4+1):
+#             for j in range(i+1,len(s)-4+2):
+#                 if s[i][0]==s[j][0]:
+#                     for k in range(j+1,len(s)-4+3):
+#                         for p in range(k+1,len(s)):
+#                             if s[k][0]==s[p][0] and s[i][1]==s[k][1] and s[j][1]==s[p][1]:
+#                                 cnt+=1
+#     print(cnt)
+
+# def countRectangles(points):
+#     # 使用集合存储唯一的点，去除重复点
+#     points_set = set(points)
+#     rectangles = set()  # 用来存储已找到的矩形（四个顶点）
+#
+#     # 枚举所有点对
+#     rectangle_count = 0
+#     points_list = list(points_set)  # 将去重后的点转化为列表进行枚举
+#     n = len(points_list)
+#
+#     for i in range(n):
+#         for j in range(i + 1, n):
+#             # 获取点对 (x1, y1) 和 (x2, y2)
+#             x1, y1 = points_list[i]
+#             x2, y2 = points_list[j]
+#
+#             # 两点可以构成矩形的对角线，要求x1 != x2 且 y1 != y2
+#             if x1 != x2 and y1 != y2:
+#                 # 检查另外两个点 (x1, y2) 和 (x2, y1) 是否在集合中
+#                 if (x1, y2) in points_set and (x2, y1) in points_set:
+#                     # 找到一个矩形，确保矩形四个顶点是唯一的
+#                     # 我们将四个点按一定顺序排序，避免矩形重复计数
+#                     rectangle = frozenset([(x1, y1), (x2, y2), (x1, y2), (x2, y1)])
+#                     if rectangle not in rectangles:
+#                         rectangles.add(rectangle)
+#                         rectangle_count += 1
+#
+#     return rectangle_count
+#
+#
+# def main():
+#     # 读取测试数据
+#     T = int(input())  # 测试数据组数
+#     for _ in range(T):
+#         n = int(input())  # 每组数据的点的数量
+#         points = []
+#         for _ in range(n):
+#             x, y = map(int, input().split())
+#             points.append((x, y))
+#
+#         # 计算当前测试数据的矩形个数
+#         print(countRectangles(points))
+#
+#
+# if __name__ == "__main__":
+#     main()
+
+# while True:
+#     n=int(input())
+#     if n==0:
+#         break
+#     s=[[' ']*(2**(n+1)) for _ in range(2**n)]
+#     a,b=len(s)-1,0
+#     def dr(s,n,x,y):
+#         if n==1:
+#             s[x][y:y+4]="/__\\"
+#             s[x-1][y+1:y+3]='/\\'
+#             return
+#         c,d=x,y+2**n
+#         e,f=x-2**(n-1),y+2**(n-1)
+#         dr(s,n-1,x,y)
+#         dr(s,n-1,c,d)
+#         dr(s,n-1,e,f)
+#
+#     dr(s,n,a,b)
+#     for i in s:
+#         l=''.join(i)
+#         l.rstrip()
+#         print(l)
+#     print()
+
+####################################################
+# from heapq import heappop,heappush
+# n=int(input())
+# a,b=[],[]
+# cnt=0
+# for i in range(n):
+#     ai,bi=map(int,input().split())
+#     heappush(a,(ai,i))
+#     heappush(b,(-bi,i))
+#     while a[0][0]>b[0][0] and a[0][1]<-b[0][1]:
+#         heappop(a)
+#         heappop(b)
+#     cnt=max(cnt,len(a))
+# print(cnt)
+nums=[4,2,5,7]
+a=[];b=[];ans=[]
+for i in range(len(nums)):
+    if nums[i] & 1:
+        a.append(nums[i])
     else:
-        while s[i] in a:
-            s[i]+=1
-        a.add(s[i])
-print(*s)
+        b.append(nums[i])
+print(a,b)
+for i in range(len(nums)//2):
+    ans.append(b[i])
+    ans.append(a[i])
+print(ans)
