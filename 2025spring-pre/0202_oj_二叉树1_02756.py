@@ -11,4 +11,4 @@ for i in range(min(len(ans[0]),len(ans[1]))):
         print(ans[0][i-1])
         break
 else:
-    print(ans[0][-1])
+    print(ans[0][-1] if len(ans[0])<len(ans[1]) else ans[1][-1])

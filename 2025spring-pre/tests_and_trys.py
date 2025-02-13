@@ -1,4 +1,7 @@
 from typing import List
+
+from sympy import factorial
+
 # # from math import gcd
 #
 # class Fraction:
@@ -369,15 +372,27 @@ from typing import List
 #         heappop(b)
 #     cnt=max(cnt,len(a))
 # print(cnt)
-nums=[4,2,5,7]
-a=[];b=[];ans=[]
-for i in range(len(nums)):
-    if nums[i] & 1:
-        a.append(nums[i])
-    else:
-        b.append(nums[i])
-print(a,b)
-for i in range(len(nums)//2):
-    ans.append(b[i])
-    ans.append(a[i])
-print(ans)
+dx,dy=[-1,0,1,-1,0,1,-1,0,1],[-1,-1,-1,0,0,0,1,1,1]
+n,k=map(int,input().split())
+s=[[0]*n for _ in range(n)]
+cnt=0
+def dfs(s,n,k):
+    global cnt
+    if k==0:
+        cnt+=1
+        return
+    for i in range(n):
+        for j in range(n):
+            if not s[i][j]:
+                for p in range(9):
+                    if 0<=i+dx[p]<n and 0<=j+dy[p]<n:
+                        s[i+dx[p]][j+dy[p]]+=1
+                dfs(s,n,k-1)
+                for p in range(9):
+                    if 0 <= i + dx[p] < n and 0 <= j + dy[p] < n:
+                        s[i+dx[p]][j+dy[p]]-=1
+dfs(s,n,k)
+if k==1:
+    print(cnt)
+else:
+    print(cnt//factorial(k))
