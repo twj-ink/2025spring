@@ -372,27 +372,80 @@ from sympy import factorial
 #         heappop(b)
 #     cnt=max(cnt,len(a))
 # print(cnt)
-dx,dy=[-1,0,1,-1,0,1,-1,0,1],[-1,-1,-1,0,0,0,1,1,1]
-n,k=map(int,input().split())
-s=[[0]*n for _ in range(n)]
-cnt=0
-def dfs(s,n,k):
-    global cnt
-    if k==0:
-        cnt+=1
-        return
-    for i in range(n):
-        for j in range(n):
-            if not s[i][j]:
-                for p in range(9):
-                    if 0<=i+dx[p]<n and 0<=j+dy[p]<n:
-                        s[i+dx[p]][j+dy[p]]+=1
-                dfs(s,n,k-1)
-                for p in range(9):
-                    if 0 <= i + dx[p] < n and 0 <= j + dy[p] < n:
-                        s[i+dx[p]][j+dy[p]]-=1
-dfs(s,n,k)
-if k==1:
-    print(cnt)
-else:
-    print(cnt//factorial(k))
+# dx,dy=[-1,0,1,-1,0,1,-1,0,1],[-1,-1,-1,0,0,0,1,1,1]
+# n,k=map(int,input().split())
+# s=[[0]*n for _ in range(n)]
+# cnt=0
+# def dfs(s,n,k):
+#     global cnt
+#     if k==0:
+#         cnt+=1
+#         return
+#     for i in range(n):
+#         for j in range(n):
+#             if not s[i][j]:
+#                 for p in range(9):
+#                     if 0<=i+dx[p]<n and 0<=j+dy[p]<n:
+#                         s[i+dx[p]][j+dy[p]]+=1
+#                 dfs(s,n,k-1)
+#                 for p in range(9):
+#                     if 0 <= i + dx[p] < n and 0 <= j + dy[p] < n:
+#                         s[i+dx[p]][j+dy[p]]-=1
+# dfs(s,n,k)
+# if k==1:
+#     print(cnt)
+# else:
+#     print(cnt//factorial(k))
+
+
+from collections import deque
+from typing import List
+
+
+class Solution:
+    def lenOfVDiagonal(self, s: List[List[int]]) -> int:
+        n, m = len(s), len(s[0])
+        dir = [(-1, -1), (-1, 1), (1, 1), (1, -1)]
+        map = {dir[i]: dir[(i + 1) % 4] for i in range(4)}
+        type2 = True
+
+        q = deque()
+        for i in range(n):
+            for j in range(m):
+                if s[i][j] == 1:
+                    q.append((i, j, type2, -1, -1, 0, 0))
+
+        if not q: return 0
+        maxv = 0;
+        step = 1
+        while q:
+            for _ in range(len(q)):
+                x, y, t, d1, d2, turned, offed = q.popleft()
+                if not offed and s[x][y] == 1:
+                    offed = 1
+                    for d in range(4):
+                        nx, ny = x + dir[d][0], y + dir[d][1]
+                        if 0 <= nx < n and 0 <= ny < m and s[nx][ny] != 1:
+                            if s[nx][ny] == 2:
+                                type2 = False
+                                q.append((nx, ny, type2, dir[d][0], dir[d][1], turned, offed))
+                elif offed and s[x][y] in (0, 2):
+                    d11, d22 = map[(d1, d2)]
+                    nn = [(d1, d2), (d11, d22)]
+                    for i in range(1 + (turned == False)):
+                        nx, ny = x + nn[i][0], y + nn[i][1]
+                        if 0 <= nx < n and 0 <= ny < m:
+                            if (type2 and s[nx][ny] == 2) or (not type2 and s[nx][ny] == 0):
+                                type2 = not type2
+                                if i == 1:
+                                    turned = True
+                                q.append((nx, ny, type2, nn[i][0], nn[i][1], turned, offed))
+            if q:
+                step += 1
+            maxv = max(maxv, step)
+
+        return maxv
+if __name__ == '__main__':
+    sol=Solution()
+    # print(sol.lenOfVDiagonal([[2,2,1,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]))
+    print(sol.lenOfVDiagonal([[2,2,2,2,2],[2,0,2,2,0],[2,0,-1,1,0],[-1,0,2,2,2],[2,0,0,2,2]]))
