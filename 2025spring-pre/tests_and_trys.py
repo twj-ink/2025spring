@@ -401,51 +401,21 @@ from sympy import factorial
 from collections import deque
 from typing import List
 
+an,am=map(int,input().split())
+a=[]
+for _ in range(an): a.append(list(map(int,input().split())))
+bn,bm=map(int,input().split())
+b=[]
+for _ in range(bn): b.append(list(map(int,input().split())))
+cn,cm=map(int,input().split())
+c=[]
+for _ in range(cn): c.append(list(map(int,input().split())))
+if am!=bn or an!=cn or bm!=cm:
+    print('Error!')
+else:
+    for i in range(an):
+        for j in range(bm):
+            c[i][j]+=sum(a[i][k]*b[k][j] for k in range(am))
+    for i in c:
+        print(*i)
 
-class Solution:
-    def lenOfVDiagonal(self, s: List[List[int]]) -> int:
-        n, m = len(s), len(s[0])
-        dir = [(-1, -1), (-1, 1), (1, 1), (1, -1)]
-        map = {dir[i]: dir[(i + 1) % 4] for i in range(4)}
-        type2 = True
-
-        q = deque()
-        for i in range(n):
-            for j in range(m):
-                if s[i][j] == 1:
-                    q.append((i, j, type2, -1, -1, 0, 0))
-
-        if not q: return 0
-        maxv = 0;
-        step = 1
-        while q:
-            for _ in range(len(q)):
-                x, y, t, d1, d2, turned, offed = q.popleft()
-                if not offed and s[x][y] == 1:
-                    offed = 1
-                    for d in range(4):
-                        nx, ny = x + dir[d][0], y + dir[d][1]
-                        if 0 <= nx < n and 0 <= ny < m and s[nx][ny] != 1:
-                            if s[nx][ny] == 2:
-                                type2 = False
-                                q.append((nx, ny, type2, dir[d][0], dir[d][1], turned, offed))
-                elif offed and s[x][y] in (0, 2):
-                    d11, d22 = map[(d1, d2)]
-                    nn = [(d1, d2), (d11, d22)]
-                    for i in range(1 + (turned == False)):
-                        nx, ny = x + nn[i][0], y + nn[i][1]
-                        if 0 <= nx < n and 0 <= ny < m:
-                            if (type2 and s[nx][ny] == 2) or (not type2 and s[nx][ny] == 0):
-                                type2 = not type2
-                                if i == 1:
-                                    turned = True
-                                q.append((nx, ny, type2, nn[i][0], nn[i][1], turned, offed))
-            if q:
-                step += 1
-            maxv = max(maxv, step)
-
-        return maxv
-if __name__ == '__main__':
-    sol=Solution()
-    # print(sol.lenOfVDiagonal([[2,2,1,2,2],[2,0,2,2,0],[2,0,1,1,0],[1,0,2,2,2],[2,0,0,2,2]]))
-    print(sol.lenOfVDiagonal([[2,2,2,2,2],[2,0,2,2,0],[2,0,-1,1,0],[-1,0,2,2,2],[2,0,0,2,2]]))
