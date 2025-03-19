@@ -17,7 +17,8 @@
 
 ### 1. deque双端队列
 
-#### oj-极差不小于K-29340
+#### oj-极差不小于K-29340 
+http://cs101.openjudge.cn/practice/29340/
 >给定一个整数数组 nums 和一个整数 k，请你找出 nums 中满足如下条件的最短非空子数组：
 子数组中元素的 最大值 与 最小值 之差 大于或等于 k。
 返回该子数组的长度；如果不存在满足条件的子数组，则返回 -1。
@@ -442,6 +443,7 @@ print(prev[0])  # 最终答案存储在 prev[0] -> dp[0][j-1] -> dp[0][n-1]
 
 #### cf-GameWithTriangles:Season2-G
 https://codeforces.com/contest/2074/problem/G
+
 将环形的点变成一条直线上的点，面积不能重叠->区间dp
 `dp[l][r]=max(dp[l+1][i-1]+dp[i+1][r-1]+s[l]*s[i]*s[r], dp[l][i]+dp[i+1][r])`
 同样也是考虑：选两端点？不选两端点？其中选的时候i从l+1开始，不选的时候i从l开始
@@ -510,6 +512,7 @@ int main(){
 ### 6. binary_search二分查找
 #### cf-TwoColors-2075C
 https://codeforces.com/contest/2075/problem/C
+
 使用`m-bisect_left(a,k)`找到能涂k个板子的颜色种类数目，然后初步数目为x*y，假设k>n-k，那么能涂k块的x种颜色一定也可以涂(n-k)块，也就是说x中包含了y，所以要减去min(x,y)，这些是用同一种颜色涂的方案数。
 ```python
 from bisect import bisect_left
