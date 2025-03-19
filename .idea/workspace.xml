@@ -1,0 +1,383 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e69af5ac-b275-4726-95b9-b77698678050" name="Changes" comment="Upload by PyCharm">
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/,.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0302_lc_矩阵_107.01.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0302_oj_宗教信仰_02524.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0303_lc_全排列_46.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0303_oj_有界的深度优先搜索_23558.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0304_lc_颜色分类_75.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0304_oj_Ultra-QiuckSort_02299.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0305_lc_搜索二维矩阵II_240.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0305_oj_Aggressive_cows_02456.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0306_lc_合并k个升序链表_23.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0306_oj_Sequence_06648.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0307_lc_子集_78.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0307_oj_A_Knights_journey_02488.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0308_lc_美丽子集的数目_2597.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0308_oj_BombGame_02659.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0309_lc_字符串编码_394.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0309_oj_括号匹配问题_03704.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0310_lc_每一个查询的最大美丽值_2070.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0311_oj_波兰_02694.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0316_oj_Palindrome_01159.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1010(Div.2)/B.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1010(Div.2)/C.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/数据结构与算法/palindromic.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/0301_dp_oj_滑雪_01088.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/0301_dp_oj_滑雪_01088.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1003(Div. 4)/B.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1003(Div. 4)/C.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1003(Div. 4)/D.py" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;twj-ink&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:twj-ink/2025spring.git&quot;,
+    &quot;accountId&quot;: &quot;e2810ac7-a794-44d6-853f-7ccdff3731fb&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2rcsHRORYlh7C6bYpXj9NFPpdIG" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "Python.,.executor": "Run",
+    "Python.0114_lc_反转链表_206.executor": "Run",
+    "Python.0114_oj_棋盘问题_01321.executor": "Run",
+    "Python.0115_oj_Fraction类_27653.executor": "Run",
+    "Python.0115_sy_栈的操作序列_293.executor": "Run",
+    "Python.0116_oj_括号匹配问题_03704.executor": "Run",
+    "Python.0116_sy_可能的出栈序列_295.executor": "Run",
+    "Python.0116_sy_合法的出栈序列_294.executor": "Run",
+    "Python.0117_oj_十进制到八进制_02734.executor": "Run",
+    "Python.0118_oj_删除链表元素_20.executor": "Run",
+    "Python.0118_oj_后序表达式求值_24588.executor": "Run",
+    "Python.0118_oj_约瑟夫问题_02746.executor": "Run",
+    "Python.0119_oj_中序表达式转后序表达式_24591.executor": "Run",
+    "Python.0119_oj_回文数字_04067.executor": "Run",
+    "Python.0120_oj_Pots_03151.executor": "Run",
+    "Python.0120_oj_双端队列_05902.executor": "Run",
+    "Python.0120_sy_迷宫问题_320.executor": "Run",
+    "Python.0121_oj_Ultra-QuickSort_02299.executor": "Run",
+    "Python.0121_sy_字符迷宫_323.executor": "Run",
+    "Python.0121_sy_跨步迷宫_322.executor": "Run",
+    "Python.0122_oj_小组队列_27925.executor": "Run",
+    "Python.0122_oj_最小新整数_04137.executor": "Run",
+    "Python.0123_oj_求二叉树的高度和叶子数目_27638.executor": "Run",
+    "Python.0124_oj_括号嵌套二叉树_27637.executor": "Run",
+    "Python.0125_oj_扩展二叉树_08581.executor": "Run",
+    "Python.0126_oj_二叉树的深度_06646.executor": "Run",
+    "Python.0127_oj_文件结构图_02775.executor": "Run",
+    "Python.0127_oj_根据后续表达式建立队列表达式_25140.executor": "Run",
+    "Python.0128_oj_FallingLeaves_01577.executor": "Run",
+    "Python.0128_oj_根据二叉树中后序列建树_24750.executor": "Run",
+    "Python.0128_oj_根据二叉树前中序序列建树_22158.executor": "Run",
+    "Python.0129_oj_实现堆结构_04078.executor": "Run",
+    "Python.0129_oj_括号嵌套树_24729.executor": "Run",
+    "Python.0129_oj_猜二叉树_25145.executor": "Run",
+    "Python.0130_oj_剪绳子_18164.executor": "Run",
+    "Python.0130_oj_哈夫曼编码树_22161.executor": "Run",
+    "Python.0130_sy_向下调整构建大顶堆_9.7.executor": "Run",
+    "Python.0131_oj_AVL树至少有几个节点_27625.executor": "Run",
+    "Python.0131_oj_二叉搜索树的层次遍历_05455.executor": "Run",
+    "Python.0131_oj_根据BST前序输出后序_22275.executor": "Run",
+    "Python.0131_oj_重建二叉树_02255.executor": "Run",
+    "Python.0201_oj_宗教信仰_02524.executor": "Run",
+    "Python.0202_oj_TreeSumming_01145.executor": "Run",
+    "Python.0202_oj_二叉树1_02756.executor": "Run",
+    "Python.0202_oj_二叉树2_02788.executor": "Run",
+    "Python.0203_oj_TheSuspects_01611.executor": "Run",
+    "Python.0206_oj_马走日_04123.executor": "Run",
+    "Python.0217_sorting_oj_模型整理_27300.executor": "Run",
+    "Python.0218_binarySearch+greedy_oj_河中跳房子_08210.executor": "Run",
+    "Python.0219_backtracking_oj_棋盘问题_01321.executor": "Run",
+    "Python.0220_backtracking_oj_马走日_04123.executor": "Run",
+    "Python.0221_binarySearch_oj_月度开销_04135.executor": "Run",
+    "Python.0221_lc_dp_最长回文子串_5.executor": "Run",
+    "Python.0221_queue_oj_回文数字_04067.executor": "Run",
+    "Python.0222_bfs_oj_Pots_03151.executor": "Run",
+    "Python.0223_dataStructures_oj_倒排索引_06640.executor": "Run",
+    "Python.0223_string_lc_Bigram分词_1078.executor": "Run",
+    "Python.0224_dataStructure_oj_倒排索引查询_04093.executor": "Run",
+    "Python.0225_oop+dataStructure_oj_当前队列中位数_27256.executor": "Run",
+    "Python.0226_greedy_oj_RadarInstallation_01328.executor": "Run",
+    "Python.0226_math_oj_牛顿迭代法_04140.executor": "Run",
+    "Python.0227_牛顿迭代法_oj_方程求解_04140.executor": "Run",
+    "Python.0301_dp_oj_滑雪_01088.executor": "Run",
+    "Python.0302_oj_宗教信仰_02524.executor": "Run",
+    "Python.0303_lc_全排列_46.executor": "Run",
+    "Python.0303_oj_有界的深度优先搜索_23558.executor": "Run",
+    "Python.0304_oj_Ultra-QiuckSort_02299.executor": "Run",
+    "Python.0305_lc_搜索二维矩阵II_240.executor": "Run",
+    "Python.0305_oj_Aggressive_cows_02456.executor": "Run",
+    "Python.0308_lc_美丽子集的数目_2597.executor": "Run",
+    "Python.0308_oj_BombGame_02659.executor": "Run",
+    "Python.0309_oj_括号匹配问题_03704.executor": "Run",
+    "Python.0310_lc_每一个查询的最大美丽值_2070.executor": "Run",
+    "Python.0311_oj_波兰_02694.executor": "Run",
+    "Python.0316_oj_Palindrome_01159.executor": "Run",
+    "Python.20250305_惊蛰_cs201_Mock_Exam.executor": "Run",
+    "Python.A.executor": "Run",
+    "Python.B.executor": "Run",
+    "Python.C.executor": "Run",
+    "Python.D.executor": "Run",
+    "Python.Huffman_Coding.executor": "Run",
+    "Python.Linked_List.executor": "Run",
+    "Python.QQ.executor": "Run",
+    "Python.Singly_Linked_List.executor": "Run",
+    "Python.WeChat.executor": "Run",
+    "Python.crawl.executor": "Run",
+    "Python.lc_解数独_37.executor": "Run",
+    "Python.lg_修改数组_P8686.executor": "Run",
+    "Python.lg_并查集_P3367.executor": "Run",
+    "Python.oj_有多少种合法的出战顺序_27217.executor": "Run",
+    "Python.oj_河中跳房子_08210.executor": "Run",
+    "Python.puzzle.executor": "Run",
+    "Python.sy_学校的班级个数_360.executor": "Run",
+    "Python.sy_数据流中位数_370.executor": "Run",
+    "Python.tests_and_trys.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "settings.editor.selected.configurable": "preferences.keymap"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Github\2025spring\python_work" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-python-sdk-abccbe9d933a-ba05f1cad1b1-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-242.20224.428" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e69af5ac-b275-4726-95b9-b77698678050" name="Changes" comment="" />
+      <created>1736869609654</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1736869609654</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1736870269182</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1736870269182</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1736870513207</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1736870513207</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1736940602552</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1736940602552</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1736940635566</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1736940635566</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1736941582042</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736941582042</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1736942258271</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1736942258271</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1737014959540</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1737014959540</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1737035900109</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1737035900109</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1737040255067</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1737040255067</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1737121468424</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1737121468424</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1737450483831</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1737450483832</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1737803622990</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1737803622990</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1737880387920</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1737880387920</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1738506929313</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1738506929313</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1738762342876</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1738762342876</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1738855827036</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1738855827036</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1739431848051</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1739431848051</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1739887542629</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1739887542629</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1740315160937</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1740315160937</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1740906508329</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1740906508329</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1741242193703</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1741242193703</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1741242217495</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1741242217495</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
+    <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Upload by PyCharm" />
+    <option name="LAST_COMMIT_MESSAGE" value="Upload by PyCharm" />
+  </component>
+</project>
