@@ -146,6 +146,7 @@ class Solution:
 
 ### 2. 多指针
 #### lc-颜色分类-75
+https://leetcode.cn/problems/sort-colors/
 > 给定一个包含红色、白色和蓝色、共 n 个元素的数组 nums ，原地 对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。
 我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色。
 必须在不使用库内置的 sort 函数的情况下解决这个问题。
@@ -324,6 +325,7 @@ class Solution:
 ```
 
 #### lc-合并K个升序链表
+https://leetcode.cn/problems/merge-k-sorted-lists/
 ```python
 from typing import List,Optional
 from heapq import heappush,heappop
@@ -439,6 +441,7 @@ print(prev[0])  # 最终答案存储在 prev[0] -> dp[0][j-1] -> dp[0][n-1]
 ```
 
 #### cf-GameWithTriangles:Season2-G
+https://codeforces.com/contest/2074/problem/G
 将环形的点变成一条直线上的点，面积不能重叠->区间dp
 `dp[l][r]=max(dp[l+1][i-1]+dp[i+1][r-1]+s[l]*s[i]*s[r], dp[l][i]+dp[i+1][r])`
 同样也是考虑：选两端点？不选两端点？其中选的时候i从l+1开始，不选的时候i从l开始
@@ -506,6 +509,7 @@ int main(){
 
 ### 6. binary_search二分查找
 #### cf-TwoColors-2075C
+https://codeforces.com/contest/2075/problem/C
 使用`m-bisect_left(a,k)`找到能涂k个板子的颜色种类数目，然后初步数目为x*y，假设k>n-k，那么能涂k块的x种颜色一定也可以涂(n-k)块，也就是说x中包含了y，所以要减去min(x,y)，这些是用同一种颜色涂的方案数。
 ```python
 from bisect import bisect_left

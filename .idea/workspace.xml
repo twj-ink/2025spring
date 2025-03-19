@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e69af5ac-b275-4726-95b9-b77698678050" name="Changes" comment="Upload by PyCharm">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -387,7 +386,47 @@
       <option name="project" value="LOCAL" />
       <updated>1742378009215</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742378189690</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1742378189690</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742378200816</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1742378200816</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742378253738</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1742378253738</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742378306517</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1742378306517</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742378324914</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1742378324914</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
