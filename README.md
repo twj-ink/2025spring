@@ -121,6 +121,8 @@ int main() {
 }
 ```
 #### lc-滑动窗口最大值-239
+https://leetcode.cn/problems/sliding-window-maximum/description/
+
 ```python
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
@@ -206,7 +208,9 @@ def sortColors(self, nums: List[int]) -> None:
 ```
 
 ### 3. stack栈
-#### lc-字符串编码-394
+#### lc-字符串解码-394
+https://leetcode.cn/problems/decode-string/description/
+
 >示例 1：
 输入：s = "3[a]2[bc]"
 输出："aaabcbc"
@@ -282,6 +286,8 @@ print(ans)
 
 ### 4. linked_list链表
 #### lc-排序链表-148
+https://leetcode.cn/problems/sort-list/description/
+
 ```python
 # Definition for singly-linked list.
 class ListNode:
@@ -395,6 +401,8 @@ class Solution:
 
 ### 5. dp
 #### oj-Palindrome-01159
+http://cs101.openjudge.cn/2025sp_routine/01159/
+
 也涉及到了回文串，重点是找到递推公式
 ```python
 # 超内存
