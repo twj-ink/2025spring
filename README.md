@@ -449,6 +449,46 @@ def main():
 main()
 ```
 
+```cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using ll = long long;
+using namespace std;
+
+void solve(){
+    int n;
+    cin >> n;
+    vector<int> s(n);
+    for (int i=0;i<n;i++){
+        cin >> s[i];
+    }
+
+    vector dp(n, vector<ll>(n,0));
+    for (int r = 2;r < n; r++){
+        for (int l = r - 2; l >= 0; l--){
+            for (int i = l + 1; i < r; i++){
+                dp[l][r] = max(dp[l][r], dp[l + 1][i - 1] + dp[i + 1][r - 1] + s[l] * s[i] * s[r]);
+            }
+            for (int i = l; i < r; i++){
+                dp[l][r] = max(dp[l][r], dp[l][i] + dp[i + 1][r]);
+            }
+        }
+    }
+
+    cout << dp[0][n - 1] << endl;
+};
+
+int main(){
+    int t;
+    cin >> t;
+    while (t--){
+        solve();
+    }
+    return 0;
+}
+```
+
 ### 6. 二分查找
 #### cf-TwoColors-2075C
 使用`m-bisect_left(a,k)`找到能涂k个板子的颜色种类数目，然后初步数目为x*y，假设k>n-k，那么能涂k块的x种颜色一定也可以涂(n-k)块，也就是说x中包含了y，所以要减去min(x,y)，这些是用同一种颜色涂的方案数。
