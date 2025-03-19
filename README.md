@@ -7,12 +7,12 @@
 |cf|   https://codeforces.com   |
 
 ### CONTENT
-- [1. deque双端队列](#1.-deque双端队列)
-- [2. 多指针](#2.-多指针)
-- [3. stack栈](##3.-stack栈)
-- [4. linked_list链表](#4.-linked_list链表)
-- [5. dp](#5.-dp)
-- [6. binary_search二分查找](#6.-binary_search二分查找)
+- [1. deque双端队列](#1-deque双端队列)
+- [2. 多指针](#2-多指针)
+- [3. stack栈](#3-stack栈)
+- [4. linked_list链表](#4-linked_list链表)
+- [5. dp](#5-dp)
+- [6. binary_search二分查找](#6-binary_search二分查找)
 
 ### 1. deque双端队列
 
