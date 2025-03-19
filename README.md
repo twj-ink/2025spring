@@ -8,6 +8,11 @@
 
 ### CONTENT
 - [1. deque双端队列](#1.-deque双端队列)
+- [2. 多指针](#2.-多指针)
+- [3. stack栈](#3.-stack栈)
+- [4. linked_list链表](#4.-linked_list链表)
+- [5. dp](#5.-dp)
+- [6. binary_search二分查找](#6.-binary_search二分查找)
 
 ### 1. deque双端队列
 
@@ -138,7 +143,7 @@ class Solution:
         return ans
 ```
 
-### 2. 三指针
+### 2. 多指针
 #### lc-颜色分类-75
 > 给定一个包含红色、白色和蓝色、共 n 个元素的数组 nums ，原地 对它们进行排序，使得相同颜色的元素相邻，并按照红色、白色、蓝色顺序排列。
 我们使用整数 0、 1 和 2 分别表示红色、白色和蓝色。
@@ -197,7 +202,7 @@ def sortColors(self, nums: List[int]) -> None:
                 nums[last_2] = 2
 ```
 
-### 3. 栈
+### 3. stack栈
 #### lc-字符串编码-394
 >示例 1：
 输入：s = "3[a]2[bc]"
@@ -272,7 +277,7 @@ print(ans)
 
 ```
 
-### 4. 链表
+### 4. linked_list链表
 #### lc-排序链表-148
 ```python
 # Definition for singly-linked list.
@@ -498,7 +503,7 @@ int main(){
 }
 ```
 
-### 6. 二分查找
+### 6. binary_search二分查找
 #### cf-TwoColors-2075C
 使用`m-bisect_left(a,k)`找到能涂k个板子的颜色种类数目，然后初步数目为x*y，假设k>n-k，那么能涂k块的x种颜色一定也可以涂(n-k)块，也就是说x中包含了y，所以要减去min(x,y)，这些是用同一种颜色涂的方案数。
 ```python
