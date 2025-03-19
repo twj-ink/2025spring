@@ -1,5 +1,14 @@
 # 2025spring --> Good Questions
 
+| 缩略 |             网站             |
+|:--:|:--------------------------:|
+|lc|    https://leetcode.cn     |
+|oj| http://cs101.openjudge.cn/ |
+|cf|   https://codeforces.com   |
+
+### CONTENT
+- [1. deque双端队列](#1.-deque双端队列)
+
 ### 1. deque双端队列
 
 #### oj-极差不小于K-29340

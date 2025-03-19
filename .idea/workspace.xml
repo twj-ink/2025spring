@@ -5,34 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e69af5ac-b275-4726-95b9-b77698678050" name="Changes" comment="Upload by PyCharm">
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/,.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0302_lc_矩阵_107.01.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0302_oj_宗教信仰_02524.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0303_lc_全排列_46.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0303_oj_有界的深度优先搜索_23558.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0304_lc_颜色分类_75.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0304_oj_Ultra-QiuckSort_02299.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0305_lc_搜索二维矩阵II_240.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0305_oj_Aggressive_cows_02456.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0306_lc_合并k个升序链表_23.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0306_oj_Sequence_06648.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0307_lc_子集_78.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0307_oj_A_Knights_journey_02488.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0308_lc_美丽子集的数目_2597.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0308_oj_BombGame_02659.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0309_lc_字符串编码_394.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0309_oj_括号匹配问题_03704.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0310_lc_每一个查询的最大美丽值_2070.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0311_oj_波兰_02694.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0316_oj_Palindrome_01159.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1010(Div.2)/B.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1010(Div.2)/C.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/数据结构与算法/palindromic.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/0301_dp_oj_滑雪_01088.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/0301_dp_oj_滑雪_01088.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1003(Div. 4)/B.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1003(Div. 4)/C.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1003(Div. 4)/D.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -373,7 +346,39 @@
       <option name="project" value="LOCAL" />
       <updated>1741242217495</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742377370371</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1742377370371</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742377425462</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1742377425462</updated>
+    </task>
+    <task id="LOCAL-00025" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742377493019</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1742377493019</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742377630171</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1742377630171</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
