@@ -262,6 +262,8 @@ class Solution:
 ```
 
 #### oj-今日化学论文-20140
+http://cs101.openjudge.cn/2025sp_routine/20140/
+
 ```python
 def dfs(s,i):
     res,multi='',0
