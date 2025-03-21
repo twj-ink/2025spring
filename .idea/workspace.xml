@@ -5,17 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e69af5ac-b275-4726-95b9-b77698678050" name="Changes" comment="Upload by PyCharm">
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0312_oj_城堡问题_02815.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0313_oj_十进制到八进制_02734.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0314_oj_合法出栈序列_22068.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0314_oj_有多少种合法的出栈顺序_27217.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0314_sy_可能的出栈序列_295.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0320_oj_冰阔落I_18250.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/deepcopy_learn.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0321_oj_我是最快的马_07206.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring-pre/0119_oj_中序表达式转后序表达式_24591.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring-pre/0119_oj_中序表达式转后序表达式_24591.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/,.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/,.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/0310_lc_每一个查询的最大美丽值_2070.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/0310_lc_每一个查询的最大美丽值_2070.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -137,6 +128,7 @@
     "Python.0313_oj_十进制到八进制_02734.executor": "Run",
     "Python.0316_oj_Palindrome_01159.executor": "Run",
     "Python.0320_oj_冰阔落I_18250.executor": "Run",
+    "Python.0321_oj_我是最快的马_07206.executor": "Run",
     "Python.20250305_惊蛰_cs201_Mock_Exam.executor": "Run",
     "Python.A.executor": "Run",
     "Python.B.executor": "Run",
@@ -473,7 +465,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742379017396</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742539179300</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1742539179300</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742539253061</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1742539253061</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
