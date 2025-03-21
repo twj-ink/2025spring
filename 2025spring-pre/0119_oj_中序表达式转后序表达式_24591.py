@@ -2,9 +2,10 @@ for _ in range(int(input())):
     s=input()
     stack=[]
     ans=[]
-    d={'(':5,'+':1,'-':1,'*':2,'/':2}
+    d={'(':0,'+':1,'-':1,'*':2,'/':2}
     i=0
     while i<len(s):
+        # print(stack)
         if s[i]=='(':
             stack.append('(')
             i+=1

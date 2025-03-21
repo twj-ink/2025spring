@@ -1,19 +1,44 @@
-def solve():
-    n=int(input())
-    s=list(map(int,input().split()))
-    dp=[[0]*n for _ in range(n)]
-    for r in range(2,n):
-        for l in range(r-2,-1,-1):
-            for i in range(l+1,r):
-                dp[l][r]=max(dp[l][r],dp[l+1][i-1]+dp[i+1][r-1]+s[l]*s[i]*s[r],dp[l][i]+dp[i+1][r])
-            for i in range(l,r):
-                dp[l][r]=max(dp[l][r],dp[l][i]+dp[i+1][r])
-    print(dp[0][-1])
+row,col,dia,xdia=[0]*5,[0]*5,[0]*10,[0]*9
+s=[[0]*5 for _ in range(5)]
+cnt=0
+cnt1,cnt2=13,12
+def dfs(i,j,cnt1,cnt2):
+    global cnt
+    if j==5:
+        i+=1
+        j=0
+    if i==5:
+        cnt+=1
+        return
+
+    if cnt1:
+        row[i]+=1;col[j]+=1;dia[i+j]+=1;xdia[i-j+4]+=1
+        if (row[i]==5 or col[j]==5 or dia[i+j]==5 or xdia[i-j+4]==5):
+            row[i]-=1;col[j]-=1;dia[i+j]-=1;xdia[i-j+4]-=1
+        else:
+            dfs(i,j+1,cnt1-1,cnt2)
+            row[i] -= 1;
+            col[j] -= 1;
+            dia[i + j] -= 1;
+            xdia[i - j + 4] -= 1
+    if cnt2:
+        row[i] -= 1;
+        col[j] -= 1;
+        dia[i + j] -= 1;
+        xdia[i - j + 4] -= 1
+        if (row[i] == -5 or col[j] == -5 or dia[i + j] == -5 or xdia[i - j + 4] == -5):
+            row[i] += 1;
+            col[j] += 1;
+            dia[i + j] += 1;
+            xdia[i - j + 4] += 1
+        else:
+            dfs(i, j + 1,cnt1,cnt2-1)
+            row[i] += 1;
+            col[j] += 1;
+            dia[i + j] += 1;
+            xdia[i - j + 4] += 1
 
 
-def main():
-    t=int(input())
-    for _ in range(t):
-        solve()
 
-main()
+dfs(0,0,13,12)
+print(cnt)

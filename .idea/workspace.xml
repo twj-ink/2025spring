@@ -4,7 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69af5ac-b275-4726-95b9-b77698678050" name="Changes" comment="Upload by PyCharm" />
+    <list default="true" id="e69af5ac-b275-4726-95b9-b77698678050" name="Changes" comment="Upload by PyCharm">
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0312_oj_城堡问题_02815.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0313_oj_十进制到八进制_02734.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0314_oj_合法出栈序列_22068.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0314_oj_有多少种合法的出栈顺序_27217.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0314_sy_可能的出栈序列_295.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0320_oj_冰阔落I_18250.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/deepcopy_learn.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2025spring-pre/0119_oj_中序表达式转后序表达式_24591.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring-pre/0119_oj_中序表达式转后序表达式_24591.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/,.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/,.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/0310_lc_每一个查询的最大美丽值_2070.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/0310_lc_每一个查询的最大美丽值_2070.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -120,7 +133,10 @@
     "Python.0309_oj_括号匹配问题_03704.executor": "Run",
     "Python.0310_lc_每一个查询的最大美丽值_2070.executor": "Run",
     "Python.0311_oj_波兰_02694.executor": "Run",
+    "Python.0312_oj_城堡问题_02815.executor": "Run",
+    "Python.0313_oj_十进制到八进制_02734.executor": "Run",
     "Python.0316_oj_Palindrome_01159.executor": "Run",
+    "Python.0320_oj_冰阔落I_18250.executor": "Run",
     "Python.20250305_惊蛰_cs201_Mock_Exam.executor": "Run",
     "Python.A.executor": "Run",
     "Python.B.executor": "Run",
@@ -132,6 +148,7 @@
     "Python.Singly_Linked_List.executor": "Run",
     "Python.WeChat.executor": "Run",
     "Python.crawl.executor": "Run",
+    "Python.deepcopy_learn.executor": "Run",
     "Python.lc_解数独_37.executor": "Run",
     "Python.lg_修改数组_P8686.executor": "Run",
     "Python.lg_并查集_P3367.executor": "Run",
@@ -440,7 +457,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742378775839</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742378924220</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1742378924220</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1742379017396</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1742379017396</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

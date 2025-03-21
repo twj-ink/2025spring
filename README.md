@@ -1,5 +1,11 @@
 # 2025spring --> Good Questions
 
+**遇到题目了，不会很正常，这里收集的题目都是我不会的，无法在看答案之前独立编写代码的。重点是在提交答案代码ac之后要问几个问题：**
+**(1)这道题在考察什么？是新题型还是见过的题型？**
+**(2)如果是见过的题型，思路在哪里卡住了？这里的思路是不是具有模板性？**
+**(3)答案代码中还有哪些地方值得学习？**
+**(4)这道题是不是与先前的某些题目是同一类的题？**
+
 | 缩略 |             网站             |
 |:--:|:--------------------------:|
 |lc|    https://leetcode.cn     |
@@ -14,6 +20,10 @@
 - [4. linked_list链表](#4-linked_list链表)
 - [5. dp](#5-dp)
 - [6. binary_search二分查找](#6-binary_search二分查找)
+- [7. 离线算法](#7-离线算法)
+- [8. heap堆](#8-heap堆)
+- [9. backtracking回溯](#9-backtracking回溯)
+
 
 ### 1. deque双端队列
 
@@ -124,6 +134,8 @@ int main() {
 https://leetcode.cn/problems/sliding-window-maximum/description/
 
 ```python
+from collections import deque
+from typing import List
 class Solution:
     def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
         maxq=deque()
@@ -169,6 +181,7 @@ nums[i] 为 0、1 或 2
 
 ```python
 # 双指针
+from typing import List
 def sortColors(self, nums: List[int]) -> None:
     """
     Do not return anything, modify nums in-place instead.
@@ -291,6 +304,7 @@ print(ans)
 https://leetcode.cn/problems/sort-list/description/
 
 ```python
+from typing import Optional
 # Definition for singly-linked list.
 class ListNode:
     def __init__(self, val=0, next=None):
@@ -536,4 +550,174 @@ for _ in range(int(input())):
         y = m - bisect_left(a, n - k)
         ans += x * y - min(x, y)
     print(ans)
+```
+
+### 7. 离线算法
+#### lc-每一个查询的最大美丽值-2070
+https://leetcode.cn/problems/most-beautiful-item-for-each-query/description/
+
+关键是学习前两行：根据数组元素对它们的索引进行排序：
+
+`idx = sorted(range(len(s)), key=lambda x:s[x])`
+
+```python
+from typing import List
+class Solution:
+    def maximumBeauty(self, items: List[List[int]], queries: List[int]) -> List[int]:
+        items.sort(key=lambda x:x[0])
+        idx = sorted(range(len(queries)), key=lambda x:queries[x])
+
+        ans=[0]*len(queries)
+        max_beauty,j=0,0
+        for i in idx:
+            q=queries[i]
+            while j<len(items) and items[j][0]<=q:
+                max_beauty=max(max_beauty,items[j][1])
+                j+=1
+            ans[i]=max_beauty
+        return ans
+```
+
+### 8. heap堆
+#### lc-选出和最大的K个元素-3478
+https://leetcode.cn/problems/choose-k-elements-with-maximum-sum/
+
+技巧是：
+1) 使用 **离线算法** 来得到`nums1`的`idxs`排序的索引数组，
+2) 处理 **维护前k大的元素之和** 的策略：使用`total_sum`来不断累加总和，并都存入最小堆`heap`中，一旦`heap`的长度超过k了，就弹出一个最小元素，同时`total_sum`减去其即可。
+```python
+from heapq import heappop,heappush
+from typing import List
+from collections import defaultdict
+class Solution:
+    def findMaxSum(self, nums1: List[int], nums2: List[int], k: int) -> List[int]:
+        n=len(nums1)
+        d=defaultdict(list)
+        # s=[(v,i) for i,v in enumerate(nums1)]
+        idxs = sorted(range(len(nums1)),key=lambda x:nums1[x])
+        # s.sort(key=lambda x:x[0])
+
+        ans,heap=[0]*n,[]
+        prev_val=None
+        prev_ans=None
+        tota_sum=0
+        for idx in idxs:
+            if prev_val==nums1[idx]:
+                ans[idx]=prev_ans
+            else:
+                ans[idx]=tota_sum
+                prev_val=nums1[idx]
+                prev_ans=ans[idx]
+
+            tota_sum+=nums2[idx]
+            heappush(heap, nums2[idx])
+            if len(heap)>k:
+                tota_sum-=heappop(heap)
+        return ans
+```
+
+### backtracking回溯
+#### 2024蓝桥杯-B
+https://www.lanqiao.cn/paper/4395/problem/19694/
+
+这道题目与下一道题目实际上是极其类似的，主体思路都是dfs暴力搜索，即对每一个位置的所有可能性都进行一次试探。为了保证路径的唯一性：
+
+(1)设置dfs的入口为(0,0)，每次递进都采取纵坐标j+1的形式，并在函数开头对坐标i和j进行调整，直到i出界;
+
+(2)每次的试探都使用同样的循环，依次尝试每一种可能，这样当dfs全部结束就就得到不重复的路径数目。
+
+为了保证填充的合法性，设置若干个列表，下白棋时+1，下黑棋时-1，两者互相制衡，从而判断是否达到了+-5来保证合法性。
+
+```python
+row,col,dia,xdia=[0]*5,[0]*5,[0]*10,[0]*9
+s=[[0]*5 for _ in range(5)]
+cnt=0
+cnt1,cnt2=13,12
+def dfs(i,j,cnt1,cnt2):
+    global cnt
+    if j==5:
+        i+=1
+        j=0
+    if i==5:
+        cnt+=1
+        return
+
+    if cnt1:
+        row[i]+=1;col[j]+=1;dia[i+j]+=1;xdia[i-j+4]+=1
+        if (row[i]==5 or col[j]==5 or dia[i+j]==5 or xdia[i-j+4]==5):
+            row[i]-=1;col[j]-=1;dia[i+j]-=1;xdia[i-j+4]-=1
+        else:
+            dfs(i,j+1,cnt1-1,cnt2)
+            row[i] -= 1;
+            col[j] -= 1;
+            dia[i + j] -= 1;
+            xdia[i - j + 4] -= 1
+    if cnt2:
+        row[i] -= 1;
+        col[j] -= 1;
+        dia[i + j] -= 1;
+        xdia[i - j + 4] -= 1
+        if (row[i] == -5 or col[j] == -5 or dia[i + j] == -5 or xdia[i - j + 4] == -5):
+            row[i] += 1;
+            col[j] += 1;
+            dia[i + j] += 1;
+            xdia[i - j + 4] += 1
+        else:
+            dfs(i, j + 1,cnt1,cnt2-1)
+            row[i] += 1;
+            col[j] += 1;
+            dia[i + j] += 1;
+            xdia[i - j + 4] += 1
+dfs(0,0,13,12)
+print(cnt)
+```
+这里dfs中的两个if，实际上就是以固定顺序暴力枚举所有可能的下棋方案，这与解数独中每次暴力枚举从1到9的所有数字是一样的策略。
+
+同时在尝试下棋后发现不合法时，也要把几个列表的状态恢复。
+
+#### lc-解数独-37
+这道题目只需要得到一个合法的填充方案即可，设置dfs的结果是布尔值，如果一直返回True将不会进入回溯部分，从而实现对s的原地修改。
+
+在开头多了一个检查该处是不是`'.'`的判断，如果不是说明不用填，直接进入下一个位置。
+```python
+from typing import List
+class Solution:
+    def solveSudoku(self, s: List[List[str]]) -> None:
+        """
+        Do not return anything, modify board in-place instead.
+        """
+        # (i,j)-row[i],col[j],squ[(i//3)*3+j//3]
+        row,col,squ=[set() for _ in range(9)],[set() for _ in range(9)],[set() for _ in range(9)]
+        for i in range(9):
+            for j in range(9):
+                if s[i][j]!='.':
+                    row[i].add(s[i][j])
+                    col[j].add(s[i][j])
+                    squ[(i//3)*3+j//3].add(s[i][j])
+
+        def dfs(i,j):
+            if j==9:
+                i+=1
+                j=0
+            if i==9:
+                return True
+            if s[i][j]!='.':
+                return dfs(i,j+1)
+            
+            for k in range(1,10):
+                k=str(k)
+                if k not in row[i] and k not in col[j] and k not in squ[(i//3)*3+j//3]:
+                    s[i][j]=k
+                    row[i].add(s[i][j])
+                    col[j].add(s[i][j])
+                    squ[(i//3)*3+j//3].add(s[i][j])
+                    if dfs(i,j+1):
+                        return True
+                    row[i].remove(s[i][j])
+                    col[j].remove(s[i][j])
+                    squ[(i//3)*3+j//3].remove(s[i][j])
+                    s[i][j]='.'
+            return False
+
+        dfs(0,0)
 ```
