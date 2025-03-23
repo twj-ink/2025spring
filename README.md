@@ -622,7 +622,7 @@ class Solution:
 
 ### 9. backtracking回溯
 #### 2024蓝桥杯-B
-https://www.lanqiao.cn/paper/4395/problem/19694/
+https://www.lanqiao.cn/problems/19694/learning/
 
 这道题目与下一道题目实际上是极其类似的，主体思路都是dfs暴力搜索，即对每一个位置的所有可能性都进行一次试探。为了保证路径的唯一性：
 

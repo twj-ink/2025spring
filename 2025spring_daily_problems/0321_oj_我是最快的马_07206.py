@@ -3,8 +3,8 @@ x,y=map(int,input().split())
 sx,sy=x,y
 ex,ey=map(int,input().split())
 m=int(input())
-s=[[0]*10 for _ in range(10)]
-ss=[[list() for _ in range(10)] for _ in range(10)]
+s=[[0]*11 for _ in range(11)]
+ss=[[list() for _ in range(11)] for _ in range(11)]
 for _ in range(m):
     i,j=map(int,input().split())
     s[i][j]=1
@@ -37,7 +37,7 @@ def bfs(x,y,ex,ey):
                 d1,d2=dx[i],dy[i]
                 if canmove(x,y,d1,d2):
                     nx,ny=x+d1,y+d2
-                    if 0<=nx<10 and 0<=ny<10 and (nx,ny,x,y) not in inq and s[nx][ny]==0:
+                    if 0<=nx<11 and 0<=ny<11 and (nx,ny,x,y) not in inq and s[nx][ny]==0:
                         q.append((nx,ny))
                         inq.add((nx,ny,x,y))
                         ss[nx][ny].append((x,y))
