@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69af5ac-b275-4726-95b9-b77698678050" name="Changes" comment="Upload by PyCharm">
-      <change afterPath="$PROJECT_DIR$/.idea/2025spring.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0326_A.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0326_B.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/0326_C.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/2025spring_daily_problems/oj_括号嵌套树_24729.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1013(Div.3)/D.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1013(Div.3)/E.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1013(Div.3)/F.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/contests/codeforces_contests/Codeforces_Round_1013(Div.3)/G.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/,.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/,.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/0314_oj_合法出栈序列_22068.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/0314_oj_合法出栈序列_22068.py" afterDir="false" />
-    </list>
+    <list default="true" id="e69af5ac-b275-4726-95b9-b77698678050" name="Changes" comment="Upload by PyCharm" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -506,7 +493,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742574562526</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1743068857328</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1743068857328</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
