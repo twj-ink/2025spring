@@ -37,6 +37,6 @@ for j in range(1, n):  # 右端点 j 从 1 到 n-1
         else:
             curr[i] = min(prev[i] + 1, curr[i + 1] + 1, prev[i + 1] + 2 if i + 1 <= j - 1 else float('inf'))
 
-    prev, curr = curr, prev  # 滚动数组，交换 prev 和 curr
+    prev, curr = curr, [0]*n  # 滚动数组，交换 prev 和 curr
 
 print(prev[0])  # 最终答案存储在 prev[0]

@@ -1,25 +1,22 @@
-def solve(s,l):
+def check(s,curr):
+    if len(curr)<n:
+        return False
+    i=0
     stack=[]
-    curr=0
-    n=len(l)
-    for i in range(n):
-        while curr<=i and (not stack or s[stack[-1]]!=s[i]):
-            stack.append(curr)
-            curr+=1
-        if stack and s[stack[-1]]==s[i]:
+    for c in s:
+        stack.append(c)
+        while stack and i<n and stack[-1]==curr[i]:
             stack.pop()
-        else:
-            return 'No'
-    return "Yes"
+            i+=1
+    return i==n
+
+
 s=input()
+n=len(s)
 while True:
     try:
-        l=input()
-        print(solve(s,l))
-
-
-
-
-
+        curr=input()
+        print(['NO','YES'][check(s,curr)])
     except EOFError:
         break
+

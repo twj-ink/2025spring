@@ -303,6 +303,95 @@ print(ans)
 
 ```
 
+#### oj-有多少种合法的出栈顺序-27217
+http://cs101.openjudge.cn/2025sp_routine/27217/
+
+给定一个整数n，输出序列1..n的出栈序列数目。
+
+这里给出三种解法：
+
+1. 法一：卡特兰数(Catalan number)
+
+除了这道题以外，以下题目同样可以使用卡特兰数：
+
+·n对括号组成的合法括号序列数目
+
+·n个不同节点的BST个数 
+
+·n个节点的二叉树的拓扑结构个数
+
+·(n+2)条边的凸多边形通过不相交的线划分为三角形的个数
+
+·从坐标轴(0,0)->(n,n)的路径，保证x>=y，的数目
+
+·n个运算符的表达式不同的计算顺序（加括号）
+
+```python
+# 疑似就是这样题目定义？
+from math import comb
+def catalan_comb(n):
+    return comb(2*n,n) // (n+1)
+
+def catalan_dp(n):
+    dp = [0]*(n+1)
+    dp[0]=1
+    for i in range(1,n+1):
+        dp[i]=sum(dp[j]*dp[i-1-j] for j in range(i))
+    return dp[n]
+
+n=int(input())
+print(catalan_comb(n))
+```
+2. dp
+```python
+def counts(n):
+    # dp = [[0] * (n + 1) for _ in range(n + 1)]
+    #
+    # for i in range(n + 1):
+    #     for j in range(n + 1):
+    #         if i==0:
+    #             dp[i][j]=1
+    #             continue
+    #         if j==0: #只能入栈
+    #             dp[i][j]=dp[i-1][j+1]
+    #         elif j==n: #只能出栈
+    #             dp[i][j]=dp[i][j-1]
+    #         else:
+    #             dp[i][j]=dp[i-1][j+1]+dp[i][j-1]
+    #
+    #
+    # return dp[n][0]
+
+    prev,curr=[1]*(n+1),[0]*(n+1)
+    for i in range(1,n+1):
+        for j in range(n+1):
+            if j==0:
+                curr[j]=prev[j+1]
+            elif j==n:
+                curr[j]=curr[j-1]
+            else:
+                curr[j]=prev[j+1]+curr[j-1]
+        prev,curr=curr,[0]*(n+1)
+    return prev[0]
+
+n = int(input())
+print(counts(n))
+```
+
+3. backtracking
+会超时。
+```python
+from functools import lru_cache
+@lru_cache(maxsize=2048)
+def dfs(i,j):
+    if i==0:
+        return 1
+    if j==0:
+        return dfs(i-1,j+1) #append stack
+    if j==n:
+        return dfs(i,j-1) #pop
+    return dfs(i-1,j+1) + dfs(i,j-1)
+```
 ### 4. linked_list链表
 #### lc-排序链表-148
 https://leetcode.cn/problems/sort-list/description/
@@ -420,6 +509,9 @@ class Solution:
 ```
 
 ### 5. dp
+
+思考的是：`dp[i][j]`是由哪些状态推出来的？
+
 #### oj-Palindrome-01159
 http://cs101.openjudge.cn/2025sp_routine/01159/
 
@@ -454,8 +546,8 @@ print(dp[0][-1])
 n = int(input())
 s = input()
 
-prev = [0] * n  # 存储上一行 dp[i+1][j]
-curr = [0] * n  # 存储当前行 dp[i][j]
+prev = [0] * n  
+curr = [0] * n  
 
 for j in range(1, n):  # 右端点 j 从 1 到 n-1
     for i in range(j - 1, -1, -1):  # 左端点 i 逆序遍历
@@ -464,7 +556,7 @@ for j in range(1, n):  # 右端点 j 从 1 到 n-1
         else:
             curr[i] = min(prev[i] + 1, curr[i + 1] + 1, prev[i + 1] + 2 if i + 1 <= j - 1 else float('inf'))
 
-    prev, curr = curr, prev  # 滚动数组，交换 prev 和 curr
+    prev, curr = curr, [0]*n  
 
 print(prev[0])  # 最终答案存储在 prev[0] -> dp[0][j-1] -> dp[0][n-1]
 ```
@@ -536,6 +628,53 @@ int main(){
     return 0;
 }
 ```
+
+
+#### oj-有多少种合法的出栈顺序-27217
+http://cs101.openjudge.cn/2025sp_routine/27217/
+
+给定一个整数n，输出序列1..n的出栈序列数目。
+
+```python
+# dp[i][j]：表示当前还有i个待入的元素，并且栈中还剩 j 个元素的情况下的合法出栈序列数。
+# 状态转移：
+# 如果i=0，都在栈里，直接为1
+# 如果j=0，无法弹出，dp[i][j]=dp[i-1][j+1]
+# 如果j!=0，dp[i][j]=dp[i-1][j+1]+dp[i][j-1]
+def counts(n):
+    # dp = [[0] * (n + 1) for _ in range(n + 1)]
+    #
+    # for i in range(n + 1):
+    #     for j in range(n + 1):
+    #         if i==0:
+    #             dp[i][j]=1
+    #             continue
+    #         if j==0: #只能入栈
+    #             dp[i][j]=dp[i-1][j+1]
+    #         elif j==n: #只能出栈
+    #             dp[i][j]=dp[i][j-1]
+    #         else:
+    #             dp[i][j]=dp[i-1][j+1]+dp[i][j-1]
+    #
+    #
+    # return dp[n][0]
+
+    prev,curr=[1]*(n+1),[0]*(n+1)
+    for i in range(1,n+1):
+        for j in range(n+1):
+            if j==0:
+                curr[j]=prev[j+1]
+            elif j==n:
+                curr[j]=curr[j-1]
+            else:
+                curr[j]=prev[j+1]+curr[j-1]
+        prev,curr=curr,[0]*(n+1)
+    return prev[0]
+
+n = int(input())
+print(counts(n))
+```
+
 
 ### 6. binary_search二分查找
 #### cf-TwoColors-2075C
@@ -726,4 +865,33 @@ class Solution:
             return False
 
         dfs(0,0)
+```
+
+#### oj-有多少种合法的出栈顺序-27217
+http://cs101.openjudge.cn/2025sp_routine/27217/
+
+给定一个整数n，输出序列1..n的出栈序列数目。
+
+```python
+### TLE ###
+
+# dp[i][j]：表示当前还有i个待入的元素，并且栈中还剩 j 个元素的情况下的合法出栈序列数。
+# 状态转移：
+# 如果i=0，都在栈里，直接为1
+# 如果j=0，无法弹出，dp[i][j]=dp[i-1][j+1]
+# 如果j!=0，dp[i][j]=dp[i-1][j+1]+dp[i][j-1]
+from functools import lru_cache
+@lru_cache(maxsize=2048)
+def dfs(i,j):
+    if i==0:
+        return 1
+    if j==0:
+        return dfs(i-1,j+1) #append stack
+    if j==n:
+        return dfs(i,j-1) #pop
+    return dfs(i-1,j+1) + dfs(i,j-1)
+    
+n=int(input())
+print(dfs(n,0))
+
 ```
