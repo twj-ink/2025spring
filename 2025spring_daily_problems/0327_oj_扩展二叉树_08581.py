@@ -5,24 +5,36 @@ class TreeNode:
         self.right=right
 
 def build(s):
-    def helper(root):
+    def helper():
         nonlocal i
         if i>=len(s):
             return None
+        if s[i]=='.':
+            i+=1
+            return None
 
-        curr=TreeNode(s[i])
-        for i )
-
-ddddd
+        root=TreeNode(s[i])
+        i+=1
+        root.left=helper()
+        root.right=helper()
+        return root
         
-    return rt
 
+    i=0
+    root = helper()
+    return root
 
+def ino(root):
+    if root:
+        return ino(root.left)+root.val+ino(root.right)
+    return ''
 
+def post(root):
+    if root:
+        return post(root.left)+post(root.right)+root.val
+    return ''
 
-def build(root):
-    n=int(input().split())
-    
-
-)
 s=input()
+root = build(s)
+print(ino(root))
+print(post(root))

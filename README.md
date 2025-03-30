@@ -27,6 +27,7 @@
 - [7. 离线算法](#7-离线算法)
 - [8. heap堆](#8-heap堆)
 - [9. backtracking回溯](#9-backtracking回溯)
+- [10. trivial](#10-trivial)
 
 
 ### 1. deque双端队列
@@ -392,6 +393,45 @@ def dfs(i,j):
         return dfs(i,j-1) #pop
     return dfs(i-1,j+1) + dfs(i,j-1)
 ```
+
+#### oj-中序表达式转为后序表达式-24591
+`3+4.5*(7+2)` -> `3 4.5 7 2 + * +`
+
+```python
+d={'+':1,'-':1,'*':2,'/':2,'(':0}
+for _ in range(int(input())):
+    s=input()
+    stack=[]
+    ans=[]
+    i=0
+    while i<len(s):
+        # print(stack)
+        if s[i] in '+-*/':
+            while stack and d[stack[-1]]>=d[s[i]]:
+                ans.append(stack.pop())
+            stack.append(s[i])
+            i+=1
+        elif s[i]=='(':
+            stack.append('(')
+            i+=1
+        elif s[i]==')':
+            while stack and stack[-1]!='(':
+                ans.append(stack.pop())
+            stack.pop()
+            i+=1
+        else:
+            curr=s[i]
+            i+=1
+            while i<len(s) and s[i] not in '+-*/()':
+                curr+=s[i]
+                i+=1
+            ans.append(curr)
+    while stack:
+        ans.append(stack.pop())
+    print(*ans)
+
+```
+
 ### 4. linked_list链表
 #### lc-排序链表-148
 https://leetcode.cn/problems/sort-list/description/
@@ -895,3 +935,64 @@ n=int(input())
 print(dfs(n,0))
 
 ```
+
+### 10. trivial
+
+#### 日期天数计算
+```python
+# 2116
+from datetime import date
+
+# 定义两个日期
+date1 = date(2025, 3, 29)
+date2 = date(2116, 1, 1)
+
+# 计算天数差
+delta = (date2 - date1).days
+
+print(delta)
+
+```
+
+#### Kadane算法
+oj-最大子矩阵-02766 
+
+http://cs101.openjudge.cn/practice/02766/
+
+>Kadane算法
+>一种非常高效的算法，用于求解一维数组中 最大子数组和。它能够在 O(n) 时间复杂度内解决问题，广泛应用于许多动态规划问题中。
+>避免了计算前缀和数组
+```python
+def kadane(s): #一维
+    curr_max=total_max=s[0]
+    for i in range(1,len(s)):
+        curr_max=max(curr_max+s[i],s[i])
+        total_max=max(total_max,curr_max)
+    return total_max
+```
+```python
+def kadane(s): #二维，压缩到一维数组
+    curr_max=total_max=s[0]
+    for i in range(1,len(s)):
+        curr_max=max(curr_max+s[i],s[i])
+        total_max=max(total_max,curr_max)
+    return total_max
+def max_sum_matrix(mat): #上下压缩
+    max_sum=-float('inf')
+    row,col=len(mat),len(mat[0])
+    for top in range(row):
+        col_sum=[0]*col
+        for bottom in range(top,row):
+            for c in range(col):
+                col_sum[c]+=s[bottom][c]
+            max_sum=max(max_sum,kadane(col_sum))
+    return max_sum
+
+n=int(input())
+nums=[]
+while len(nums)<n**2:
+    nums.extend(input().split())
+mat=[list(map(int,nums[i*n:(i+1)*n])) for i in range(n)]
+print(max_mat(mat))
+```
+---
