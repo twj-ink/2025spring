@@ -51,4 +51,5 @@
 #     p,q=int(p),int(q)
 #     print(trans(p,n,q)[::-1])
 
-print(9**(1/3))
+print(bin(int('0x00359141',16)))
+print(bin(int('0x4a564504',16)))
