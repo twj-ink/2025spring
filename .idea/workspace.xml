@@ -4,17 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e69af5ac-b275-4726-95b9-b77698678050" name="Changes" comment="Upload by PyCharm">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/,.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/,.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/0315_oj_分解质数_02749.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/0317_oj_最大子矩阵_02766.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/0317_oj_最大子矩阵_02766.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/0322_oj_FindTheMultiple_01426.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/0322_oj_FindTheMultiple_01426.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/0325_oj_二叉树的深度_06646.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/0325_oj_二叉树的深度_06646.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/0326_oj_求二叉树的高度和叶子数目_27638.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/0326_oj_求二叉树的高度和叶子数目_27638.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2025spring_daily_problems/0327_oj_扩展二叉树_08581.py" beforeDir="false" afterPath="$PROJECT_DIR$/2025spring_daily_problems/0327_oj_扩展二叉树_08581.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="e69af5ac-b275-4726-95b9-b77698678050" name="Changes" comment="Upload by PyCharm" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -169,6 +159,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Github",
     "settings.editor.selected.configurable": "preferences.keymap"
   }
 }]]></component>
@@ -521,7 +512,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743180244743</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="Upload by PyCharm">
+      <option name="closed" value="true" />
+      <created>1743313634943</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1743313634943</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
