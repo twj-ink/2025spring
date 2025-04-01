@@ -12,9 +12,9 @@
 
 | 缩略 |             网站             |
 |:--:|:--------------------------:|
-|lc|    https://leetcode.cn     |
-|oj| http://cs101.openjudge.cn/ |
-|cf|   https://codeforces.com   |
+| lc |    https://leetcode.cn     |
+| oj | http://cs101.openjudge.cn/ |
+| cf |   https://codeforces.com   |
 
 
 ### CONTENT
@@ -27,8 +27,8 @@
 - [7. 离线算法](#7-离线算法)
 - [8. heap堆](#8-heap堆)
 - [9. backtracking回溯](#9-backtracking回溯)
-- [10. trivial](#10-trivial)
-
+- [10. prefix_sum前缀和](#10-prefix_sum前缀和)
+- [11. trivial](#11-trivial)
 
 ### 1. deque双端队列
 
@@ -936,7 +936,71 @@ print(dfs(n,0))
 
 ```
 
-### 10. trivial
+### 10. prefix_sum前缀和
+
+#### lc-构造乘积矩阵-2906
+
+https://leetcode.cn/problems/construct-product-matrix/
+
+>给你一个下标从 0 开始、大小为 n * m 的二维整数矩阵 grid ，定义一个下标从 0 开始、大小为 n * m 的的二维矩阵 p。
+> 如果满足以下条件，则称 p 为 grid 的 乘积矩阵 ：
+>对于每个元素 `p[i][j]` ，它的值等于除了 `grid[i][j]` 外所有元素的乘积。乘积对 12345 取余数。
+>返回 grid 的乘积矩阵。
+
+这道题如果变成：求除该位置外所有数字的和，那么可以先计算总和再遍历每个位置减去当前位置的值*2即可。但是这道题是乘，考虑到有0的情况，
+而且数字最后的乘积会很大，除法对取模也不是很好操作，因此考虑构造 **后缀和** 和 **前缀和** 的思路：
+
+`suf[i][j]`表示从`s[i][j+1]`开始往后的所有格子之积；`pre[i][j]`表示从开始到`s[i][j-1]`之前的所有格子之积，那么
+每一个格子之外的积就是`suf[i][j] * pre[i][j]`。
+
+同时，还可以进行空间优化：我们直接对原始的s数组进行操作，把后缀的值全部乘在s的数字上，用suf一个变量来记录后缀积，每次的后缀积都统计在了s中；前缀同理。
+
+```python
+from typing import List
+class Solution:
+    def constructProductMatrix(self, s: List[List[int]]) -> List[List[int]]:
+        n, m, mod = len(s), len(s[0]), 12345
+        ans = [[1] * m for _ in range(n)]
+        suf = 1
+        for i in range(n - 1, -1, -1):
+            for j in range(m - 1, -1, -1):
+                ans[i][j] = suf % mod
+                suf = (suf * s[i][j]) % mod
+
+        pre = 1
+        for i in range(n):
+            for j in range(m):
+                ans[i][j] = (ans[i][j] * pre) % mod
+                pre = (pre * s[i][j]) % mod
+
+        return ans
+```
+
+#### oj-最大或值-2680
+
+https://leetcode.cn/problems/maximum-or/description/
+
+这道题变为了一维数组的操作，同样的，`suf[i]`表示从第i+1个位置开始到最后的总或值，`prev`变量用来维护第i-1个位置之前的总或值，
+那么当前位置的左移k位并与其余元素进行或运算的结果就是`s[i]<<k | prev | suf[i]`
+
+```python
+from typing import List
+class Solution:
+    def maximumOr(self, s: List[int], k: int) -> int:
+        n=len(s)
+        suf=[0]*n
+        for i in range(n-2,-1,-1):
+            suf[i] = suf[i+1] | s[i+1]
+        
+        prev=0
+        ans=0
+        for i in range(n):
+            ans = max(ans,prev | (s[i] << k) | suf[i])
+            prev |= s[i]
+        return ans
+```
+
+### 11. trivial
 
 #### 日期天数计算
 ```python
