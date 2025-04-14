@@ -799,8 +799,203 @@ class Solution:
         return ans
 ```
 
+#### lc-移除最小数对使数组有序II-3510
+
+https://leetcode.cn/problems/minimum-pair-removal-to-sort-array-ii/
+
+需要维护的信息：
+
+1. nums中**相邻的元素和**以及**这一对元素的左边一个的索引**，通过一个升序的数据结构维护，方便从第一位查找当前从左侧开始找的最小数对和（这也是为什么要把索引考虑进去排序的原因），需要增加查找删除，借用**堆+懒删除**或者**有序集合**的方法；
+2. 维护剩余下标，每次在进行加法运算时，需要得知当前i位置的左侧尚存在的pre索引和右侧尚存在的nxt以及nxt2索引，对这几个数组对的和进行更新（在1中的heap），维护左右两侧最近的索引，使用**两个数组**或者**有序集合**或者**两个并查集**。
+3. 每次加法运算后，如果都采用O(nlogn)来统计当前逆序对太慢；考虑统计相邻元素逆序个数，降低到每次O(n)；还可以在一开始建立第一步中的堆时统计起始相邻逆序个数dec，在第二步的每次更新中对新出现的数对关系进行加减操作，这样时间复杂度将更低。
+4. 最后完成的条件是dec=0；维护答案ans，每次dec循环一次就加1.
+
+法一：使用有序集合（Python为SortedList，cpp为set<>）
+```python
+from sortedcontainers import SortedList
+from typing import List
+
+class Solution:
+    def minimumPairRemoval(self, nums: List[int]) -> int:
+        sl=SortedList() 
+        idx=SortedList(range(len(nums))) #找i左右相邻的idx
+        dec=0
+        for i in range(len(nums)-1):
+            if nums[i]>nums[i+1]:
+                dec+=1
+            sl.add((nums[i]+nums[i+1],i))
+            
+        ans=0
+        while dec>0:
+            ans+=1
+            s,i=sl.pop(0)
+            k=idx.bisect_left(i)
+
+            #i, nxt
+            if k+1 < len(idx): #必定成立，因为i是每一对左侧的索引
+                nxt=idx[k+1]
+                if nums[i]>nums[nxt]:
+                    dec-=1
+            
+            #pre, i
+            if k>0:
+                pre=idx[k-1]
+                if nums[pre]>nums[i]:
+                    dec-=1
+                if nums[pre]>s:
+                    dec+=1
+                sl.remove((nums[pre]+nums[i],pre))
+                sl.add((nums[pre]+s,pre))
+
+            #nxt, nxt2
+            if k+2<len(idx):
+                nxt2=idx[k+2]
+                if nums[nxt]>nums[nxt2]:
+                    dec-=1
+                if s>nums[nxt2]:
+                    dec+=1
+                sl.remove((nums[nxt]+nums[nxt2],nxt))
+                sl.add((s+nums[nxt2],i))
+
+            nums[i]=s
+            idx.remove(nxt)
+
+        return ans
+```
+
+```cpp
+class Solution {
+public:
+    int minimumPairRemoval(vector<int>& nums) {
+        int n = nums.size();
+        set<pair<long long, int>> pairs; //(s,i)->sortedlist
+        int dec=0;
+        for (int i=0;i<n-1;i++){
+            int x=nums[i],y=nums[i+1];
+            if (x>y){
+                dec++;
+            }
+            pairs.emplace(x+y,i);
+        }
+
+        set<int> idx; //剩余下标
+        for (int i=0;i<n;i++){
+            idx.insert(i);
+        }
+
+        vector<long long> a(nums.begin(),nums.end()); //把int转为ll
+        int ans=0;
+        while (dec>0){
+            ans++;
+
+            //取最小的一对
+            auto [s,i]=*pairs.begin();
+            pairs.erase(pairs.begin());
+
+            auto it=idx.lower_bound(i);
+
+            //i,nxt
+            auto nxt_it=next(it);
+            int nxt=*nxt_it;
+            dec-=(a[i]>a[nxt]);
+
+            //pre,i
+            if (it!=idx.begin()){
+                auto pre_it=prev(it);
+                int pre=*pre_it;
+                dec-=(a[pre]>a[i]);
+                dec+=(a[pre]>s);
+                pairs.erase({a[pre]+a[i],pre});
+                pairs.emplace(a[pre]+s,pre);
+            }
+
+            //nxt,nxt2
+            auto nxt2_it=next(nxt_it);
+            if (nxt2_it!=idx.end()){    //end()指针的空的
+                int nxt2=*nxt2_it;
+                dec-=(a[nxt]>a[nxt2]);
+                dec+=(s>a[nxt2]);
+                pairs.erase({a[nxt]+a[nxt2],nxt});
+                pairs.emplace(s+a[nxt2],i);
+            }
+
+            a[i]=s;
+            idx.erase(nxt);
+        }
+        return ans;
+    }
+};
+```
+
+法二：堆+懒删除
+```python
+from collections import defaultdict
+from typing import List
+from heapq import heappop,heappush
+class Solution:
+    def minimumPairRemoval(self, nums: List[int]) -> int:
+        n=len(nums)
+        heap=[]
+        dec=0
+        lazy=defaultdict(int)
+        left=list(range(-1,n))
+        right=list(range(1,n+1))
+        ans=0
+
+        for i in range(n-1):
+            if nums[i]>nums[i+1]:
+                dec+=1
+            heappush(heap,(nums[i]+nums[i+1],i))
+
+        while dec:
+            ans+=1
+            while lazy[heap[0]]:
+                lazy[heappop(heap)]-=1
+            s,i=heappop(heap)
+
+            nxt=right[i]
+            #i,nxt
+            if nums[i]>nums[nxt]:
+                dec-=1
+            
+            #pre,i
+            pre=left[i]
+            if pre>=0:
+                if nums[pre]>nums[i]:
+                    dec-=1
+                if nums[pre]>s:
+                    dec+=1
+                heappush(heap,(nums[pre]+s,pre))
+                lazy[(nums[pre]+nums[i],pre)]+=1
+
+            #nxt,nxt2
+            nxt2=right[nxt]
+            if nxt2<n:
+                if nums[nxt]>nums[nxt2]:
+                    dec-=1
+                if s>nums[nxt2]:
+                    dec+=1
+                heappush(heap,(s+nums[nxt2],i))
+                lazy[(nums[nxt]+nums[nxt2],nxt)]+=1
+            
+            nums[i]=s
+            #更新nums[nxt]的left和right位置的索引，使得right[nxt]的新left值与left[nxt]相等，left[nxt]的新right值与right[nxt]相等(因为nxt被删除了，有点并查集的find函数的找根节点的含义)
+            left[right[nxt]],right[left[nxt]]=left[nxt],right[nxt]
+        return ans
+'''
+left = [-1, 0, 1, 2, 3]; -> left = [-1, 0, 1, 2, 2];
+idx  = [0, 1, 2, 3, 4]
+right= [1, 2, 3, 4, 5]; -> right= [1, 2, 4, 4, 5];
+i=2; nxt=3;
+l=left[3]=2;r=right[3]=4
+right[2]=4
+left[4]=2
+'''
+```
+
 ### 9. backtracking回溯
 #### 2024蓝桥杯-B
+
 https://www.lanqiao.cn/problems/19694/learning/
 
 这道题目与下一道题目实际上是极其类似的，主体思路都是dfs暴力搜索，即对每一个位置的所有可能性都进行一次试探。为了保证路径的唯一性：
