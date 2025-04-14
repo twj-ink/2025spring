@@ -16,19 +16,43 @@
 | oj | http://cs101.openjudge.cn/ |
 | cf |   https://codeforces.com   |
 
-
-### CONTENT
-- [1. deque双端队列](#1-deque双端队列)
-- [2. 多指针](#2-多指针)
-- [3. stack栈](#3-stack栈)
-- [4. linked_list链表](#4-linked_list链表)
-- [5. dp](#5-dp)
-- [6. binary_search二分查找](#6-binary_search二分查找)
-- [7. 离线算法](#7-离线算法)
-- [8. heap堆](#8-heap堆)
-- [9. backtracking回溯](#9-backtracking回溯)
-- [10. prefix_sum前缀和](#10-prefix_sum前缀和)
-- [11. trivial](#11-trivial)
+<!-- TOC -->
+* [2025spring --> Good Questions](#2025spring----good-questions)
+    * [1. deque双端队列](#1-deque双端队列)
+      * [oj-极差不小于K-29340](#oj-极差不小于k-29340-)
+      * [lc-滑动窗口最大值-239](#lc-滑动窗口最大值-239)
+    * [2. 多指针](#2-多指针)
+      * [lc-颜色分类-75](#lc-颜色分类-75)
+    * [3. stack栈](#3-stack栈)
+      * [lc-字符串解码-394](#lc-字符串解码-394)
+      * [oj-今日化学论文-20140](#oj-今日化学论文-20140)
+      * [oj-有多少种合法的出栈顺序-27217](#oj-有多少种合法的出栈顺序-27217)
+      * [oj-中序表达式转为后序表达式-24591](#oj-中序表达式转为后序表达式-24591)
+    * [4. linked_list链表](#4-linked_list链表)
+      * [lc-排序链表-148](#lc-排序链表-148)
+      * [lc-合并K个升序链表](#lc-合并k个升序链表)
+    * [5. dp](#5-dp)
+      * [oj-Palindrome-01159](#oj-palindrome-01159)
+      * [cf-GameWithTriangles:Season2-G](#cf-gamewithtrianglesseason2-g)
+      * [oj-有多少种合法的出栈顺序-27217](#oj-有多少种合法的出栈顺序-27217-1)
+    * [6. binary_search二分查找](#6-binary_search二分查找)
+      * [cf-TwoColors-2075C](#cf-twocolors-2075c)
+    * [7. 离线算法](#7-离线算法)
+      * [lc-每一个查询的最大美丽值-2070](#lc-每一个查询的最大美丽值-2070)
+    * [8. heap堆](#8-heap堆)
+      * [lc-选出和最大的K个元素-3478](#lc-选出和最大的k个元素-3478)
+      * [lc-移除最小数对使数组有序II-3510](#lc-移除最小数对使数组有序ii-3510)
+    * [9. backtracking回溯](#9-backtracking回溯)
+      * [2024蓝桥杯-B](#2024蓝桥杯-b)
+      * [lc-解数独-37](#lc-解数独-37)
+      * [oj-有多少种合法的出栈顺序-27217](#oj-有多少种合法的出栈顺序-27217-2)
+    * [10. prefix_sum前缀和](#10-prefix_sum前缀和)
+      * [lc-构造乘积矩阵-2906](#lc-构造乘积矩阵-2906)
+      * [oj-最大或值-2680](#oj-最大或值-2680)
+    * [11. trivial](#11-trivial)
+      * [日期天数计算](#日期天数计算)
+      * [Kadane算法](#kadane算法)
+<!-- TOC -->
 
 ### 1. deque双端队列
 
@@ -384,14 +408,14 @@ print(counts(n))
 ```python
 from functools import lru_cache
 @lru_cache(maxsize=2048)
-def dfs(i,j):
+def dfs(i,j,n):
     if i==0:
         return 1
     if j==0:
-        return dfs(i-1,j+1) #append stack
+        return dfs(i-1,j+1,n) #append stack
     if j==n:
-        return dfs(i,j-1) #pop
-    return dfs(i-1,j+1) + dfs(i,j-1)
+        return dfs(i,j-1,n) #pop
+    return dfs(i-1,j+1,n) + dfs(i,j-1,n)
 ```
 
 #### oj-中序表达式转为后序表达式-24591
@@ -1231,7 +1255,7 @@ def max_sum_matrix(mat): #上下压缩
         col_sum=[0]*col
         for bottom in range(top,row):
             for c in range(col):
-                col_sum[c]+=s[bottom][c]
+                col_sum[c]+=mat[bottom][c]
             max_sum=max(max_sum,kadane(col_sum))
     return max_sum
 
@@ -1240,6 +1264,6 @@ nums=[]
 while len(nums)<n**2:
     nums.extend(input().split())
 mat=[list(map(int,nums[i*n:(i+1)*n])) for i in range(n)]
-print(max_mat(mat))
+print(max_sum_matrix(mat))
 ```
 ---
