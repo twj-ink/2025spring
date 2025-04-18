@@ -1203,11 +1203,54 @@ https://leetcode.cn/problems/maximum-or/description/
 那么当前位置的左移k位并与其余元素进行或运算的结果就是`s[i]<<k | prev | suf[i]`
 
 ```python
-
-
+class Solution:
+    def maximumOr(self, s: List[int], k: int) -> int:
+        n=len(s)
+        suf=[0]*n
+        for i in range(n-2,-1,-1):
+            suf[i] = suf[i+1] | s[i+1]
+        
+        prev=0
+        ans=0
+        for i in range(n):
+            ans = max(ans, prev | (s[i] << k) | suf[i])
+            prev |= s[i]
+        return ans
 ```
 
-### 11. trivial
+```cpp
+#include <algorithm>
+#include <vector>
+#include <bits/stdc++.h>
+using namespace std;
+class Solution {
+public:
+    long long maximumOr(vector<int>& nums, int k) {
+        int n = nums.size();
+        vector<int> suf(n);
+        for (int i = n-2; i>=0; i--) {
+            suf[i] = suf[i+1] | nums[i+1];
+        }
+
+        long long ans=0;
+        int pre = 0;
+        for (int i=0;i<n;i++) {
+            ans = max(ans, pre | ((long long)nums[i] << k) | suf[i]);
+            pre |= nums[i];
+        }
+        return ans;
+    }
+};```
+
+### 11. DFS & BFS
+
+#### lc-最大人工岛-827
+
+https://leetcode.cn/problems/making-a-large-island/
+
+
+
+### 12. trivial
 
 #### 日期天数计算
 ```python
