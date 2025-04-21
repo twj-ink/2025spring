@@ -49,8 +49,6 @@
     * [10. prefix_sum前缀和](#10-prefix_sum前缀和)
       * [lc-构造乘积矩阵-2906](#lc-构造乘积矩阵-2906)
       * [oj-最大或值-2680](#oj-最大或值-2680)
-    * [11. trivial](#11-trivial)
-      * [日期天数计算](#日期天数计算)
       * [Kadane算法](#kadane算法)
 <!-- TOC -->
 
@@ -1203,6 +1201,7 @@ https://leetcode.cn/problems/maximum-or/description/
 那么当前位置的左移k位并与其余元素进行或运算的结果就是`s[i]<<k | prev | suf[i]`
 
 ```python
+from typing import List
 class Solution:
     def maximumOr(self, s: List[int], k: int) -> int:
         n=len(s)
@@ -1310,3 +1309,238 @@ mat=[list(map(int,nums[i*n:(i+1)*n])) for i in range(n)]
 print(max_sum_matrix(mat))
 ```
 ---
+
+#### 实现散列表
+
+oj-实现散列表-29468
+
+```python
+def is_prime(n):
+    if n<=1: return False
+    for i in range(2,n**0.5+1):
+        if n%i==0:
+            return False
+    return True
+
+def next_prime(n):
+    while not is_prime(n):
+        n+=1
+    return n 
+
+n=int(input())
+s=list(map(int,input().split()))
+table_size=next_prime(n)
+table=[-1]*table_size
+result=[]
+
+for num in s:
+    pos = num % table_size
+    
+    # 用二次探测法获取首个未占用的位置
+    # 如果已经存在输出；不存在插入；无空位输出-
+    for i in range(table_size):
+        probe = (pos + i**2) % table_size
+        if table[probe] == num:
+            result.append(probe)
+            break
+        if table[probe] == -1:
+            table[probe] = num
+            result.append(probe)
+            break
+    else:
+        result.append('-')
+
+print(*result)
+```
+
+#### 字典树Trie
+
+给定一个单词列表，要求你：
+
+对于每一个单词，找出它的 最短前缀，这个前缀：
+
+1.是这个单词的开头；
+
+2.在整个单词列表中是唯一的（即其它单词都没有相同的前缀）；
+
+如果这个单词本身就已经出现在列表中（即没有任何歧义），那么输出它本身为前缀。
+
+```python
+class TrieNode:
+    def __init__(self):
+        self.children = dict()
+        self.cnt = 1
+        self.is_end = False
+
+class Trie:
+    def __init__(self):
+        self.root = TrieNode()
+
+    def insert(self, word):
+        cur = self.root
+        for ch in word:
+            if ch not in cur.children:
+                cur.children[ch] = TrieNode()
+            cur = cur.children[ch]
+            cur.cnt += 1
+        cur.is_end = True
+
+    def get_unique_prefix(self, word):
+        cur = self.root
+        pre = ''
+        for ch in word:
+            pre += ch
+            cur = cur.children[ch]
+            if cur.cnt == 1:
+                return pre
+        return pre
+
+words=[]
+while True:
+    try:
+        word = input()
+        words.append(word)
+    except EOFError:
+        break
+
+trie = Trie()
+for word in words:
+    trie.insert(word)
+
+for word in words:
+    print(trie.get_unique_prefix(word))
+```
+
+题目：
+
+##### lc-最长公共前缀-14
+
+https://leetcode.cn/problems/longest-common-prefix/
+
+与上面的模板不同，这道题找的是公共前缀，那么只需要在建完树之后向下遍历，如果发现**当前节点的is_end为True**（即没有children字母了）或者
+**当前节点的children长度不为1**（即开始有分支了，不是公共前缀了），就break，否则加入答案。这里用了`ch=next(iter(cur.children))`来获取
+下一次字母，比较方便。
+
+```python
+from typing import List
+class Node:
+    def __init__(self):
+        self.children=dict()
+        self.cnt=0
+        self.is_end=False
+
+class Trie:
+    def __init__(self):
+        self.root=Node()
+    
+    def insert(self, word):
+        cur = self.root
+        for ch in word:
+            if ch not in cur.children:
+                cur.children[ch]=Node()
+            cur = cur.children[ch]
+            cur.cnt+=1
+        cur.is_end=True
+    
+    def find_pre(self):
+        cur = self.root
+        pre = ''
+        if not cur:
+            return pre
+        while not cur.is_end and len(cur.children) == 1:
+            ch = next(iter(cur.children))
+            pre += ch
+            cur = cur.children[ch]
+        return pre
+    
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        trie = Trie()
+        for word in strs:
+            trie.insert(word)
+        return trie.find_pre()
+```
+
+#### KMP算法
+
+实现python的find算法，要求时间复杂度为O(m+n).
+
+##### lc-找出字符串中第一个匹配项的下标-28
+
+```python
+class Solution:
+    def strStr(self, s: str, target: str) -> int:
+        def kmp(s, target, next):
+            i,j=0,0
+            while i<len(s) and j<len(target):
+                if j==-1 or s[i]==target[j]:
+                    i+=1
+                    j+=1
+                else:
+                    j = next[j]
+            if j==len(target):
+                return i-j
+            else:
+                return -1
+        def get_next(target,next):
+            next[0]=-1
+            i,j=0,-1
+            while i<len(target):
+                if j==-1 or target[i]==target[j]:
+                    i+=1
+                    j+=1
+                    if i<len(target):
+                        next[i]=j
+                else:
+                    j=next[j]
+        next=[0]*len(target)
+        get_next(target,next)
+        return kmp(s,target,next)
+```
+
+```cpp
+class Solution {
+public:
+    void get_next(const string& target, vector<int>& next) {
+        next[0] = -1;
+        int i = 0;
+        int j = -1;
+        int l = target.size();
+        while (i < l) {
+            if (j == -1 || target[i] == target[j]) {
+                ++i;
+                ++j;
+                if (i < l) next[i] = j;
+            } else {
+                j = next[j];
+            }
+        }
+    }
+
+    int kmp(const string& s, const string& target, const vector<int>& next) {
+        int i = 0;
+        int j = 0;
+        int l1 = s.size();
+        int l2 = target.size();
+        while (i < l1 && j < l2) {
+            if (j == -1 || s[i] == target[j]) {
+                i++;
+                j++;
+            } else {
+                j = next[j];
+            }
+        }
+        if (j == l2) {
+            return i - j;
+        } else {
+            return -1;
+        }
+    }
+
+    int strStr(string s, string target) {
+        vector<int> next(target.size());
+        get_next(target, next);
+        return kmp(s, target, next);
+    }
+};
+```
