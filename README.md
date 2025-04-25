@@ -1257,7 +1257,50 @@ public:
 
 https://leetcode.cn/problems/making-a-large-island/
 
+第一步：计算每一个已有岛屿的面积，保存是关键：用area依次保存各个面积，同时新建一个二维数组作为岛屿的id，用当前area的长度作为id值。这样实现的是`id[i][j]`的值即为该岛屿的area的索引。
 
+第二步：遍历每一个0的位置，统计四周岛屿的面积，注意用集合去重，相加即为可能答案；
+
+在第一步中用到的dfs，面积用size，初始化为1，**每一次递归就用`size+=dfs(nx,ny)`**，最后返回的是size值，这样操作起来很方便。
+
+```python
+from typing import List
+class Solution:
+    def largestIsland(self, s: List[List[int]]) -> int:
+        dx,dy=[0,-1,1,0],[-1,0,0,1]
+        n=len(s)
+        
+        def dfs(i,j):
+            size = 1
+            id[i][j]=len(area)
+            for k in range(4):
+                nx,ny=i+dx[k],j+dy[k]
+                if 0<=nx<n and 0<=ny<n and s[nx][ny]==1 and id[nx][ny]==-1:
+                    size+=dfs(nx,ny)
+            return size
+
+        id = [[-1]*n for _ in range(n)]
+        area=[]
+        for i in range(n):
+            for j in range(n):
+                if s[i][j]==1 and id[i][j]==-1:
+                    area.append(dfs(i,j))
+        
+        if not area: return 1
+
+        ans=0
+        for i in range(n):
+            for j in range(n):
+                if s[i][j]==0:
+                    curr=set()
+                    for k in range(4):
+                        x,y=i+dx[k],j+dy[k]
+                        if 0<=x<n and 0<=y<n and id[x][y]!=-1:
+                            curr.add(id[x][y])
+                    ans = max(ans, sum(area[idx] for idx in curr) + 1)
+        
+        return ans if ans else n*n
+```
 
 ### 12. trivial
 

@@ -28,3 +28,15 @@ while True:
     ans=[i for i in range(1,n+1) if i==parent[i]]
     print(f'Case {cnt}: {len(ans)}')
 
+
+'''
+    6
+12         9
+17 10     20  16
+
+
+
+
+90
+'''
+
