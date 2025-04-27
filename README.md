@@ -1520,80 +1520,83 @@ class Solution:
 
 ##### lc-找出字符串中第一个匹配项的下标-28
 
+https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/
+
 ```python
 class Solution:
     def strStr(self, s: str, target: str) -> int:
-        def kmp(s, target, next):
-            i,j=0,0
-            while i<len(s) and j<len(target):
-                if j==-1 or s[i]==target[j]:
-                    i+=1
-                    j+=1
-                else:
-                    j = next[j]
-            if j==len(target):
-                return i-j
-            else:
-                return -1
-        def get_next(target,next):
-            next[0]=-1
-            i,j=0,-1
-            while i<len(target):
-                if j==-1 or target[i]==target[j]:
-                    i+=1
-                    j+=1
-                    if i<len(target):
-                        next[i]=j
-                else:
+        def kmp(s,t,next):
+            n,m=len(s),len(t)
+            j=-1
+            for i in range(n):
+                while j!=-1 and s[i]!=t[j+1]:
                     j=next[j]
-        next=[0]*len(target)
-        get_next(target,next)
+                if s[i]==t[j+1]:
+                    j+=1
+                if j==m-1:
+                    return i-j
+            return -1
+
+        # next[i]表示s[0..i]对应的最长前后缀的前缀索引，即s[0..next[i]]为最长前缀，长度为next[i]+1
+        def get_next(s):
+            n=len(s)
+            next=[-1]*n
+            j=-1
+            for i in range(1,n):
+                while j!=-1 and s[i]!=s[j+1]:
+                    j=next[j]
+                if s[i]==s[j+1]:
+                    j+=1
+                next[i]=j
+            return next
+        
+        next=get_next(target)
         return kmp(s,target,next)
 ```
 
-```cpp
-class Solution {
-public:
-    void get_next(const string& target, vector<int>& next) {
-        next[0] = -1;
-        int i = 0;
-        int j = -1;
-        int l = target.size();
-        while (i < l) {
-            if (j == -1 || target[i] == target[j]) {
-                ++i;
-                ++j;
-                if (i < l) next[i] = j;
-            } else {
-                j = next[j];
-            }
-        }
-    }
+##### oj-前缀中的周期-01961
 
-    int kmp(const string& s, const string& target, const vector<int>& next) {
-        int i = 0;
-        int j = 0;
-        int l1 = s.size();
-        int l2 = target.size();
-        while (i < l1 && j < l2) {
-            if (j == -1 || s[i] == target[j]) {
-                i++;
-                j++;
-            } else {
-                j = next[j];
-            }
-        }
-        if (j == l2) {
-            return i - j;
-        } else {
-            return -1;
-        }
-    }
+http://cs101.openjudge.cn/practice/01961/
 
-    int strStr(string s, string target) {
-        vector<int> next(target.size());
-        get_next(target, next);
-        return kmp(s, target, next);
-    }
-};
+考虑next数组的含义：`next[i]`表示的是`s[0..i]`的最长公共前后缀的前缀索引，这也是为什么每次比较
+是否相等时用的是`s[i]==s[j+1]`，那么前缀的长度就是`next[i]+1`。
+
+对于字符串s，遍历每一个前缀，取这个前缀的next对应的值，假设该前缀的有周期性的，那么有以下式子成立：
+
+$$ 前缀中的最短重复周期长度 = 前缀长度 - (next数组的对应值+1) $$
+
+比如`abcabcabc`，取前缀`abcabcabc`，i=11，`next[i]=5`,此时最短重复周期即为next对应的字符串后面的那一部分（即删掉前面的abcabc，剩下的abc就是最小周期）。
+
+因此构建next数组之后，只需要判断这个最短重复周期长度是否是前缀的因数即可。
+
+```python
+def get_next(s):
+    n=len(s)
+    next=[-1]*n
+    j=-1
+    for i in range(1,n):
+        while j!=-1 and s[i]!=s[j+1]:
+            j=next[j]
+        if s[i]==s[j+1]:
+            j+=1
+        next[i]=j
+    return next
+
+case=0
+while True:
+    n=int(input())
+    if n==0:
+        break
+    s=input()
+    case+=1
+    print(f'Test case #{case}')
+    next=get_next(s)
+    for i in range(1,n):
+        prefix_len = i + 1
+        longest_pre_suf = next[i] + 1
+        short_period = prefix_len - longest_pre_suf
+        if short_period != prefix_len and prefix_len % short_period == 0:
+            print(f'{prefix_len} {prefix_len // short_period}')
+    print()
+
 ```
