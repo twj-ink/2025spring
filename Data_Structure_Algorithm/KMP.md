@@ -54,7 +54,7 @@ def kmp(s: str, target: str, next: List) -> bool: #返回能否在s中找到targ
 
 例题：
 
-##### lc-找出字符串中第一个匹配项的下标-28
+### lc-找出字符串中第一个匹配项的下标-28
 
 https://leetcode.cn/problems/find-the-index-of-the-first-occurrence-in-a-string/
 
@@ -90,7 +90,7 @@ class Solution:
         return kmp(s,target,next)
 ```
 
-##### oj-前缀中的周期-01961
+### oj-前缀中的周期-01961
 
 http://cs101.openjudge.cn/practice/01961/
 
@@ -137,7 +137,7 @@ while True:
 
 ```
 
-##### lc-最长快乐前缀-1392
+### lc-最长快乐前缀-1392
 
 https://leetcode.cn/problems/longest-happy-prefix/
 
@@ -161,5 +161,84 @@ class Solution:
         return s[:next[-1]+1]
 ```
 
-### 参考：
+### lc-最短回文串-214
+
+https://leetcode.cn/problems/shortest-palindrome/
+
+> 给定一个字符串 s，你可以通过在字符串前面添加字符将其转换为回文串。找到并返回可以用这种方式转换的最短回文串。
+>
+> 示例 1：
+
+>> 输入：s = "aacecaaa"
+>> 输出："aaacecaaa"
+
+>示例 2：
+
+>>输入：s = "abcd"
+>>输出："dcbabcd"
+>
+>提示：
+0 <= s.length <= 5 * 104
+s 仅由小写英文字母组成
+
+注意数据量，采用dp来预处理所有子串是否回文，然后再逆向遍历j找到第一个`s[0..j]`为回文子串，将后缀反转加到前方的思路会超时（做了空间优化还是超时）
+
+该题的巧妙做法是：
+
+$$ 找出s的最长回文前缀子串 \rightarrow 找出s+reversed(s) 的最长公共前后缀 $$
+
+此时可以采用KMP算法，有效降低了时间复杂度。
+
+```python
+class Solution:
+    def shortestPalindrome(self, s: str) -> str:
+        ### KMP算法（实际上只用到了get_next函数）
+        def get_next(s):
+            n=len(s)
+            next=[-1]*n
+            j=-1
+            for i in range(1,n):
+                while j!=-1 and s[i]!=s[j+1]:
+                    j=next[j]
+                if s[i]==s[j+1]:
+                    j+=1
+                next[i]=j
+            return next
+        
+        s_rev=s+'#'+s[::-1]
+        next=get_next(s_rev)
+        length=next[-1]+1
+        suf=s[length:]
+        return suf[::-1]+s
+
+        ### 优化空间的dp（压缩为两个dp滚动数组）
+        # n=len(s)
+        # pre, cur=[True]*n, [True]*n
+        # first=[True]
+        # for j in range(1,n):
+        #     for i in range(j-1,-1,-1):
+        #         cur[i]=pre[i+1] and s[i]==s[j]
+        #     first.append(cur[0])
+        #     pre,cur=cur,[True]*n
+        # for j in range(n-1,-1,-1):
+        #     if first[j]:
+        #         return s[j+1:][::-1]+s
+        # return ''
+        
+        ### 未空间优化的dp
+        # dp=[[True]*n for _ in range(n)]
+        # for j in range(1,n):
+        #     for i in range(j-1,-1,-1):
+        #         dp[i][j]=dp[i+1][j-1] and s[i]==s[j]
+        # # for i in dp:print(*i)
+        # for j in range(n-1,-1,-1):
+        #     if dp[0][j]:
+        #         add=s[j+1:][::-1]
+        #         s=add+s
+        #         return s
+        # return ''
+
+```
+
+## 参考：
 1. [知乎：如何更好地理解和掌握 KMP 算法?](https://www.zhihu.com/question/21923021/answer/281346746)
