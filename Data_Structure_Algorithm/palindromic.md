@@ -7,6 +7,7 @@
       * [法1.区间dp](#1区间dp)
       * [法2.Manacher算法](#2manacher算法)
     * [LeetCode:131.分割回文串](#leetcode131分割回文串)
+    * [OpenJudge:01159.Palindrome](#openjudge01159palindrome)
   * [二、回文子序列](#二回文子序列)
     * [LeetCode:516.最长回文子序列](#leetcode516最长回文子序列)
       * [法1.区间dp](#1区间dp-1)
