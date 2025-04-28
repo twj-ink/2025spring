@@ -21,59 +21,29 @@ not -1 > 1 -> sum of dif -> 0
 not -1 == 0 -> k-(dif(S)-1)
 '''
 
-
-def can_satisfy(a, b, k):
-    n = len(a)
-    m = len(b)
-
-    # 枚举插入位置
-    for pos in range(n + 1):
-        new_a = a[:pos] + [k] + a[pos:]
-        i = 0  # new_a index
-        j = 0  # b index
-        while i < len(new_a) and j < m:
-            if new_a[i] >= b[j]:
-                j += 1
-            i += 1
-        if j == m:
-            return True
-    return False
-
-
-def solve_case(n, m, a, b):
-    # 先判断不插花是否满足
-    i = 0
-    j = 0
-    while i < n and j < m:
-        if a[i] >= b[j]:
-            j += 1
-        i += 1
-    if j == m:
-        return 0
-
-    # 二分查找最小k
-    left = 1
-    right = int(1e9)
-    answer = -1
-    while left <= right:
-        mid = (left + right) // 2
-        if can_satisfy(a, b, mid):
-            answer = mid
-            right = mid - 1
-        else:
-            left = mid + 1
-    return answer
-
-
-# 主程序
-t = int(input())
-results = []
-for _ in range(t):
-    n, m = map(int, input().split())
-    a = list(map(int, input().split()))
-    b = list(map(int, input().split()))
-    results.append(solve_case(n, m, a, b))
-
-# 输出结果
-for res in results:
-    print(res)
+# def get_next(s):
+#     n=len(s)
+#     nxt=[0]*n
+#     j=-1
+#     for i in range(1,n):
+#         while j!=-1 and s[i]!=s[j+1]:
+#             j=nxt[j]
+#         if s[i]==s[j+1]:
+#             j+=1
+#         nxt[i]=j
+#     return nxt
+# s='aacecaaa'
+# nxt=get_next(s)
+s='aacecaaa'
+n=len(s)
+dp=[[True]*n for _ in range(n)]
+for j in range(1,n):
+    for i in range(j-1,-1,-1):
+        dp[i][j]=dp[i+1][j-1] and s[i]==s[j]
+# for i in dp:print(*i)
+for j in range(n-1,-1,-1):
+    if dp[0][j]:
+        add=s[j+1:]
+        s=add+s
+        print(s)
+        break

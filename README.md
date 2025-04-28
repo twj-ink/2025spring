@@ -1601,3 +1601,27 @@ while True:
     print()
 
 ```
+
+##### lc-最长快乐前缀-1392
+
+https://leetcode.cn/problems/longest-happy-prefix/
+
+就是计算next数组的题目，然后对于这个字符串的最长前后缀的长度就是`next[-1]+1`，经过上面那道题的洗礼后这道题就是ez了。
+
+```python
+class Solution:
+    def longestPrefix(self, s: str) -> str:
+        def get_next(s):
+            next=[-1]*len(s)
+            n=len(s)
+            j=-1
+            for i in range(1,n):
+                while j!=-1 and s[i]!=s[j+1]:
+                    j=next[j]
+                if s[i]==s[j+1]:
+                    j+=1
+                next[i]=j
+            return next
+        next=get_next(s)
+        return s[:next[-1]+1]
+```
