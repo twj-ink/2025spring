@@ -2,6 +2,8 @@
 
 在使用kmp之前首先应该了解一下next数组的含义。
 
+模板1：get_next函数
+
 ```python
 from typing import List
 def get_next(s: str) -> List:
@@ -33,12 +35,14 @@ def get_next(s: str) -> List:
 
 注意代码中的next数组是对target得到的。
 
+模板2：kmp函数
+
 ```python
 from typing import List
 def kmp(s: str, target: str, next: List) -> bool: #返回能否在s中找到target
     # next = get_next(target)
     n,m=len(s),len(target)
-    j=0
+    j=-1
     for i in range(n):
         while j!=-1 and s[i]!=target[j+1]:
             j=next[j]
@@ -240,7 +244,28 @@ class Solution:
 
 ```
 
+### lc-找出数组中的美丽下标II-3008
+
+https://leetcode.cn/problems/find-beautiful-indices-in-the-given-array-ii/
+
+做了这道题之后考虑对kmp模板函数的优化。
+
+第一步：找出a和b在s中出现位置的索引列表idxa，idxb；
+
+第二步：遍历每一个idxa中的索引，查看idxb中是否有满足条件的j使得i符合答案，符合就加入ans中，使用二分进行。
+
+在第一步中需要将 **所有的匹配索引保存** ，与先前的 **是否存在匹配子字符串** 要求更高，在kmp函数中做出如下优化：
+
+1. 若m的长度仅为1，直接找出n中该字符串的索引并返回；
+
+2. 当完成一次子字符串的匹配时(j==m-1)，将当前的i-j（匹配子字符串的开始索引）加入答案，j跳转到`next[j]`。
+
+3. 发现其实get_next和kmp的j初始化都可以直接赋值为-1，因为第一次while循环中，j如果初始化为1，势必会进行`j=next[j]=next[0]=-1`，那就和直接初始化为-1是一致的了。
+
+
 ```python
+from typing import List
+from bisect import bisect_left
 class Solution:
     def beautifulIndices(self, s: str, a: str, b: str, k: int) -> List[int]:
         def get_next(s):
@@ -257,7 +282,7 @@ class Solution:
 
         def kmp(s, a, next):
             idx = []
-            j = 0
+            j = -1
             n, m = len(s), len(a)
             if m == 1: return [i for i in range(len(s)) if s[i] == a]
             for i in range(n):
@@ -266,14 +291,12 @@ class Solution:
                 if s[i] == a[j + 1]:
                     j += 1
                 if j == m - 1:
-                    if i - j >= 0:
-                        idx.append(i - j)
+                    idx.append(i - j)
                     j=next[j]
             return idx
 
         na, nb = get_next(a), get_next(b)
         idxa, idxb = kmp(s, a, na), kmp(s, b, nb)
-        # print(idxa,idxb)
         ans = []
         if not idxa or not idxb:
             return []
