@@ -240,5 +240,52 @@ class Solution:
 
 ```
 
+```python
+class Solution:
+    def beautifulIndices(self, s: str, a: str, b: str, k: int) -> List[int]:
+        def get_next(s):
+            n = len(s)
+            next = [-1] * n
+            j = -1
+            for i in range(1, n):
+                while j != -1 and s[i] != s[j + 1]:
+                    j = next[j]
+                if s[i] == s[j + 1]:
+                    j += 1
+                next[i] = j
+            return next
+
+        def kmp(s, a, next):
+            idx = []
+            j = 0
+            n, m = len(s), len(a)
+            if m == 1: return [i for i in range(len(s)) if s[i] == a]
+            for i in range(n):
+                while j != -1 and s[i] != a[j + 1]:
+                    j = next[j]
+                if s[i] == a[j + 1]:
+                    j += 1
+                if j == m - 1:
+                    if i - j >= 0:
+                        idx.append(i - j)
+                    j=next[j]
+            return idx
+
+        na, nb = get_next(a), get_next(b)
+        idxa, idxb = kmp(s, a, na), kmp(s, b, nb)
+        # print(idxa,idxb)
+        ans = []
+        if not idxa or not idxb:
+            return []
+        for i in idxa:
+            bi = bisect_left(idxb, i)
+            if bi < len(idxb) and idxb[bi] - i <= k or \
+                    bi > 0 and i - idxb[bi - 1] <= k:
+                if i != -1:
+                    ans.append(i)
+        return ans
+```
+
+
 ## 参考：
 1. [知乎：如何更好地理解和掌握 KMP 算法?](https://www.zhihu.com/question/21923021/answer/281346746)
