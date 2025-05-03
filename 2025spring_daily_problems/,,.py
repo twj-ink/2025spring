@@ -11,24 +11,21 @@
 #                 dp[i][j] = max(dp[i][j], s[kk-1]+dp[i-kk][j-1])
 #
 # print(dp[-1][-1])
-def calculate_distinct_f_values(n):
-    if n == 1:
-        return 1  # 当 n = 1 时，只有一个排列，f(p) = 0
-
-    # 初始化存储每个 n 的结果
-    dp = [0] * (n + 1)
-    dp[1] = 1  # 当 n = 1，只有1种可能，f(p) = 0
-
-    # 递推方式（可以根据问题调整递推公式）
-    for i in range(2, n + 1):
-        # 遍历从1到n的所有排列组合，计算dp值
-        dp[i] = dp[i - 1] * 2  # 这是简化版的递推关系，具体情况可以根据问题调整
-
-    return dp[n]
-
-# 测试
-t = int(input())  # 读取测试用例数
-for _ in range(t):
-    n = int(input())  # 读取每个n
-    print(calculate_distinct_f_values(n))  # 输出每个n对应的结果
-
+for _ in range(int(input())):
+    n,x=map(int,input().split())
+    c=sum(1 for i in bin(x)[2:] if i=='1')
+    print(bin(x)[2:])
+    if c==0:
+        if n==1:
+            print(-1)
+        elif n%2==0:
+            print(n)
+        else:
+            print(n+3)
+    elif c==1:
+        if n%2==0:
+            print(n+3)
+        else:
+            print(n)
+    else:
+        print(x + (max(0, n - c) + 1) // 2 * 2)
