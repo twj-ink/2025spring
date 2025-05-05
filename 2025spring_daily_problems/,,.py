@@ -12,20 +12,28 @@
 #
 # print(dp[-1][-1])
 for _ in range(int(input())):
-    n,x=map(int,input().split())
-    c=sum(1 for i in bin(x)[2:] if i=='1')
-    print(bin(x)[2:])
-    if c==0:
-        if n==1:
-            print(-1)
-        elif n%2==0:
-            print(n)
+    n, k = map(int, input().split())
+    if k & 1:
+        print('No')
+        continue
+
+    max_v = n ** 2 // 2
+    if k > max_v:
+        print('No')
+        continue
+
+    p = [i for i in range(1, n + 1)]
+    i, j = 0, n - 1
+    while i < j:
+        if k >= (curr := 2 * (p[j] - p[i])):
+            k -= curr
+            p[i], p[j] = p[j], p[i]
+            i += 1
+            j -= 1
         else:
-            print(n+3)
-    elif c==1:
-        if n%2==0:
-            print(n+3)
-        else:
-            print(n)
+            j -= 1
+    if k == 0:
+        print('Yes')
+        print(*p)
     else:
-        print(x + (max(0, n - c) + 1) // 2 * 2)
+        print('No')
