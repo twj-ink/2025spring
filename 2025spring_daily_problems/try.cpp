@@ -1,48 +1,84 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-const int INF = 0x3f3f3f3f;
+struct TreeNode {
+    char val;
+    TreeNode* left = nullptr;
+    TreeNode* right = nullptr;
+    TreeNode(char val_) : val(val_) {};
+};
 
-using Pair = pair<int,int>;
-using vvi  = vector<vector<int>>;
+int idx = 0;
+TreeNode* build(const string& s) {
+    if (idx >= s.size()) {
+        return nullptr;
+    }
+    if (s[idx] == '#') {
+        return nullptr;
+    }
+    TreeNode* root = new TreeNode(s[idx]);
+    idx++;
+    root->left = build(s);
+    idx++;
+    root->right = build(s);
+    return root;
+}
+
+string inos = "";
+string poss = "";
+vector<char> ans;
+
+void ino(TreeNode* root) {
+    if (root!=nullptr) {
+        // cout << root->val << endl;
+        ino(root->left);
+        inos+=root->val;
+        ino(root->right);
+    }
+}
+void pos(TreeNode* root) {
+    if (root!=nullptr) {
+        pos(root->left);
+        pos(root->right);
+        poss+=root->val;
+    }
+}
+void bfs(TreeNode* root) {
+    queue<TreeNode*> q;
+    q.push(root);
+    // ans.push_back(root->val);
+    while (!q.empty()) {
+        auto node = q.front();q.pop();
+        ans.push_back(node->val);
+        if (node->left!=nullptr) {
+            // ans.push_back(node->left->)
+            q.push(node->left);
+        }
+        if (node->right!=nullptr) {
+            q.push(node->right);
+        }
+    }
+}
 
 int main() {
     ios::sync_with_stdio(false);
-    cin.tie(nullptr);
+    cin.tie(0);
 
-    int n,m;
-    cin >> n >> m;
+    string s;
+    cin >> s;
 
-    unordered_map<int, vector<Pair>> g;
-    for (int i = 0; i < m; i++) {
-        int u,v,w;
-        cin>>u>>v>>w;
-        g[u].push_back({v,w});
-    }
-
-    priority_queue<Pair, vector<Pair>, greater<Pair>> heap;
-    heap.push({0,1});
-    vector<int> dist(n + 1, INF);
-    dist[1] = 0;
-
-    while (true) {
-        int d,u;
-        auto p = heap.top(); heap.pop();
-        d = p.first, u = p.second;
-        if (u == n) {
-            cout << d << endl;
-            break;
-        }
-        if (d > dist[u]) {
-            continue;
-        }
-        for (auto [v, w] : g[u]) {
-            if (dist[u] + w < dist[v]) {
-                dist[v] = dist[u] + w;
-                heap.push({dist[v], v});
-            }
-        }
-    }
+    TreeNode* root = build(s);
+    ino(root); pos(root);
+    bfs(root);
+    cout << inos << endl;
+    cout << poss << endl;
+    for (auto i:ans) cout<<i;
+    cout << endl;
+    // int t;
+    // cin >> t;
+    // while (t--) {
+    //     solve();
+    // }
 
     return 0;
 }

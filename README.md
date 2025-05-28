@@ -1472,7 +1472,7 @@ print(*result)
 class TrieNode:
     def __init__(self):
         self.children = dict()
-        self.cnt = 1
+        self.cnt = 0
         self.is_end = False
 
 class Trie:
