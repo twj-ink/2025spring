@@ -1,84 +1,95 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-struct TreeNode {
-    char val;
-    TreeNode* left = nullptr;
-    TreeNode* right = nullptr;
-    TreeNode(char val_) : val(val_) {};
-};
+const int INF = 1e9;
 
-int idx = 0;
-TreeNode* build(const string& s) {
-    if (idx >= s.size()) {
-        return nullptr;
-    }
-    if (s[idx] == '#') {
-        return nullptr;
-    }
-    TreeNode* root = new TreeNode(s[idx]);
-    idx++;
-    root->left = build(s);
-    idx++;
-    root->right = build(s);
-    return root;
-}
-
-string inos = "";
-string poss = "";
-vector<char> ans;
-
-void ino(TreeNode* root) {
-    if (root!=nullptr) {
-        // cout << root->val << endl;
-        ino(root->left);
-        inos+=root->val;
-        ino(root->right);
-    }
-}
-void pos(TreeNode* root) {
-    if (root!=nullptr) {
-        pos(root->left);
-        pos(root->right);
-        poss+=root->val;
-    }
-}
-void bfs(TreeNode* root) {
-    queue<TreeNode*> q;
-    q.push(root);
-    // ans.push_back(root->val);
-    while (!q.empty()) {
-        auto node = q.front();q.pop();
-        ans.push_back(node->val);
-        if (node->left!=nullptr) {
-            // ans.push_back(node->left->)
-            q.push(node->left);
-        }
-        if (node->right!=nullptr) {
-            q.push(node->right);
+int maxCapacityPath(const unordered_map<int,vector<pair<int,int>>>& g, int s, int t, int n) {
+    vector<int> capacity(n + 1, 0);
+    vector<bool> visited(n + 1, false);
+    capacity[s] = INF;
+    
+    priority_queue<pair<int,int>> pq;
+    pq.push({INF, s});
+    
+    while (!pq.empty()) {
+        int u = pq.top().second;
+        pq.pop();
+        
+        if (visited[u]) continue;
+        visited[u] = true;
+        
+        if (u == t) return capacity[t];
+        
+        if (g.find(u) != g.end()) {
+            for (const auto& p : g.at(u)) {
+                int v = p.first;
+                int w = p.second;
+                if (!visited[v] && capacity[v] < min(capacity[u], w)) {
+                    capacity[v] = min(capacity[u], w);
+                    pq.push({capacity[v], v});
+                }
+            }
         }
     }
+    return -1;
 }
+    
 
 int main() {
     ios::sync_with_stdio(false);
-    cin.tie(0);
+    cin.tie(nullptr);
+    int t;
+    cin>>t;
+    for (int i = 0; i < t;i++){
+        int op,x;
+        cin>>op>>x;
+        set<int> s;
+        auto lo = s.lower_bound(x);
+        auto it = s.begin();
+        switch (op)
+        {
+        case 5:
+            /* code */
+            s.insert(x);
+            break;
+        case 1:
+            if (s.size()>1) cout << distance(s.begin(), lo) + 2 << endl;
+            else cout << distance(s.begin(), lo) + 1 << endl;
+            break;
+        case 2:
+            auto it = s.begin();
+            for (int i = 0;i<x-1;i++) {
+                it++;
+            }
+            cout<<*it<<endl;
+            break;
 
-    string s;
-    cin >> s;
+        }
+    }
 
-    TreeNode* root = build(s);
-    ino(root); pos(root);
-    bfs(root);
-    cout << inos << endl;
-    cout << poss << endl;
-    for (auto i:ans) cout<<i;
-    cout << endl;
-    // int t;
-    // cin >> t;
-    // while (t--) {
-    //     solve();
+    // int n,m;
+    // cin>>n>>m;
+    // unordered_map<int,vector<pair<int,int>>> g;
+    // for (int i = 0; i < m;i ++) {
+    //     int u,v,w;
+    //     cin>>u>>v>>w;
+    //     g[u].push_back(make_pair(v,w));
+    //     g[v].push_back(make_pair(u,w));
     // }
-
+    // unordered_map<int,unordered_map<int,int>> d;
+    // int q;
+    // cin>>q;
+    // for (int j = 0;j<q;j++) {
+    //     int s,e;
+    //     cin>>s>>e;
+    //     if (d.find(s)!=d.end() && d[s].find(e)!=d[s].end()) {
+    //         cout<<d[s][e]<<endl;
+    //         continue;
+    //     }
+    //     int ans = maxCapacityPath(g,s,e,n);
+    //     d[s][e]=ans;
+    //     cout<<ans<<endl;
+    // }
+    
     return 0;
 }
