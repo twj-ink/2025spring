@@ -57,6 +57,7 @@ Updated 1141 GMT+8 May 27, 2025
 `https://github.com/twj-ink`
 
 截图：
+![my_github_screen_shot](https://github.com/twj-ink/img/blob/main/img/mygitscreenshot.jpg)
 
 ## 3. 课程总结
 
@@ -112,7 +113,7 @@ Updated 1141 GMT+8 May 27, 2025
 [kmp](https://github.com/twj-ink/2025spring/blob/main/Data_Structure_Algorithm/KMP.md)
 
 关于课程情报，课件内容存放在了这里：
-[课程内容情报]()
+[课程内容情报](https://github.com/twj-ink/2025spring/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95B%E8%AF%BE%E7%A8%8B%E6%83%85%E6%8A%A5)
 
 
 ## 参考
