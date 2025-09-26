@@ -17,49 +17,52 @@
 | cf |   https://codeforces.com   |
 
 <!-- TOC -->
-* [2025spring --> Good Questions](#2025spring----good-questions)
-    * [1. deque双端队列](#1-deque双端队列)
-      * [oj-极差不小于K-29340](#oj-极差不小于k-29340-)
-      * [lc-滑动窗口最大值-239](#lc-滑动窗口最大值-239)
-    * [2. 多指针](#2-多指针)
-      * [lc-颜色分类-75](#lc-颜色分类-75)
-    * [3. stack栈](#3-stack栈)
-      * [lc-字符串解码-394](#lc-字符串解码-394)
-      * [oj-今日化学论文-20140](#oj-今日化学论文-20140)
-      * [oj-有多少种合法的出栈顺序-27217](#oj-有多少种合法的出栈顺序-27217)
-      * [oj-中序表达式转为后序表达式-24591](#oj-中序表达式转为后序表达式-24591)
-    * [4. linked_list链表](#4-linked_list链表)
-      * [lc-排序链表-148](#lc-排序链表-148)
-      * [lc-合并K个升序链表](#lc-合并k个升序链表)
-    * [5. dp](#5-dp)
-      * [oj-Palindrome-01159](#oj-palindrome-01159)
-      * [cf-GameWithTriangles:Season2-G](#cf-gamewithtrianglesseason2-g)
-      * [oj-有多少种合法的出栈顺序-27217](#oj-有多少种合法的出栈顺序-27217-1)
-    * [6. binary_search二分查找](#6-binary_search二分查找)
-      * [cf-TwoColors-2075C](#cf-twocolors-2075c)
-    * [7. 离线算法](#7-离线算法)
-      * [lc-每一个查询的最大美丽值-2070](#lc-每一个查询的最大美丽值-2070)
-    * [8. heap堆](#8-heap堆)
-      * [lc-选出和最大的K个元素-3478](#lc-选出和最大的k个元素-3478)
-      * [lc-移除最小数对使数组有序II-3510](#lc-移除最小数对使数组有序ii-3510)
-    * [9. backtracking回溯](#9-backtracking回溯)
-      * [2024蓝桥杯-B](#2024蓝桥杯-b)
-      * [lc-解数独-37](#lc-解数独-37)
-      * [oj-有多少种合法的出栈顺序-27217](#oj-有多少种合法的出栈顺序-27217-2)
-    * [10. prefix_sum前缀和](#10-prefix_sum前缀和)
-      * [lc-构造乘积矩阵-2906](#lc-构造乘积矩阵-2906)
-      * [oj-最大或值-2680](#oj-最大或值-2680)
-    * [11. DFS & BFS](#11-dfs--bfs)
-      * [lc-最大人工岛-827](#lc-最大人工岛-827)
-    * [12. trivial](#12-trivial)
-      * [日期天数计算](#日期天数计算)
-      * [Kadane算法](#kadane算法)
-      * [实现散列表](#实现散列表)
-      * [字典树Trie](#字典树trie)
-        * [lc-最长公共前缀-14](#lc-最长公共前缀-14)
-      * [KMP算法](#kmp算法)
-        * [lc-找出字符串中第一个匹配项的下标-28](#lc-找出字符串中第一个匹配项的下标-28)
-        * [oj-前缀中的周期-01961](#oj-前缀中的周期-01961)
+- [2025spring --\> Good Questions](#2025spring----good-questions)
+    - [1. deque双端队列](#1-deque双端队列)
+      - [oj-极差不小于K-29340](#oj-极差不小于k-29340)
+      - [lc-滑动窗口最大值-239](#lc-滑动窗口最大值-239)
+    - [2. 多指针](#2-多指针)
+      - [lc-颜色分类-75](#lc-颜色分类-75)
+    - [3. stack栈](#3-stack栈)
+      - [合法的出栈序列](#合法的出栈序列)
+      - [lc-字符串解码-394](#lc-字符串解码-394)
+      - [oj-今日化学论文-20140](#oj-今日化学论文-20140)
+      - [oj-有多少种合法的出栈顺序-27217](#oj-有多少种合法的出栈顺序-27217)
+      - [oj-中序表达式转为后序表达式-24591](#oj-中序表达式转为后序表达式-24591)
+    - [4. linked\_list链表](#4-linked_list链表)
+      - [lc-排序链表-148](#lc-排序链表-148)
+      - [lc-合并K个升序链表](#lc-合并k个升序链表)
+    - [5. dp](#5-dp)
+      - [oj-Palindrome-01159](#oj-palindrome-01159)
+      - [cf-GameWithTriangles:Season2-G](#cf-gamewithtrianglesseason2-g)
+      - [oj-有多少种合法的出栈顺序-27217](#oj-有多少种合法的出栈顺序-27217-1)
+    - [6. binary\_search二分查找](#6-binary_search二分查找)
+      - [cf-TwoColors-2075C](#cf-twocolors-2075c)
+    - [7. 离线算法](#7-离线算法)
+      - [lc-每一个查询的最大美丽值-2070](#lc-每一个查询的最大美丽值-2070)
+    - [8. heap堆](#8-heap堆)
+      - [lc-选出和最大的K个元素-3478](#lc-选出和最大的k个元素-3478)
+      - [lc-移除最小数对使数组有序II-3510](#lc-移除最小数对使数组有序ii-3510)
+    - [9. backtracking回溯](#9-backtracking回溯)
+      - [2024蓝桥杯-B](#2024蓝桥杯-b)
+      - [lc-解数独-37](#lc-解数独-37)
+      - [oj-有多少种合法的出栈顺序-27217](#oj-有多少种合法的出栈顺序-27217-2)
+    - [10. prefix\_sum前缀和](#10-prefix_sum前缀和)
+      - [lc-构造乘积矩阵-2906](#lc-构造乘积矩阵-2906)
+      - [oj-最大或值-2680](#oj-最大或值-2680)
+    - [11. DFS \& BFS](#11-dfs--bfs)
+      - [lc-最大人工岛-827](#lc-最大人工岛-827)
+      - [oj-骑士周游-28050](#oj-骑士周游-28050)
+    - [12. tree \& graph](#12-tree--graph)
+      - [树上dp汇总](#树上dp汇总)
+    - [13. trivial](#13-trivial)
+      - [日期天数计算](#日期天数计算)
+      - [Kadane算法](#kadane算法)
+      - [实现散列表](#实现散列表)
+      - [字典树Trie](#字典树trie)
+        - [lc-最长公共前缀-14](#lc-最长公共前缀-14)
+      - [KMP算法](#kmp算法)
+      - [Palindrome回文子串与子序列](#palindrome回文子串与子序列)
 <!-- TOC -->
 
 ### 1. deque双端队列
@@ -258,6 +261,88 @@ def sortColors(self, nums: List[int]) -> None:
 ```
 
 ### 3. stack栈
+
+#### 合法的出栈序列
+
+```cpp
+// 合法的出栈顺序
+// 给定1-n的出栈序列，请判断是否合理，合理给出操作过程
+
+#include <iostream>
+#include <vector>
+#include <stack>
+#include <string>
+
+using namespace std;
+
+int main(){
+    int n;
+    cin >> n;
+    vector<int> target(n);
+    for (int i = 0; i < n; i++) {
+        cin >> target[i];
+    }
+    if (!valid) {
+        cout<<"NO"<<endl;
+        return 0;
+    } 
+
+    stack<int> stk;
+    vector<string> operations;
+    int curr = 1;
+
+    for (int i = 0; i < n; i++) {
+        int num = target[i];
+        // 如果 栈空 or 不等于目标元素，入栈
+        while (curr <= n && (stk.empty() || stk.top() != num)) {
+            stk.push(curr);
+            operations.push_back("PUSH " + to_string(curr));
+            curr++;
+        }
+
+        // 此时栈顶是目标元素，弹出栈顶
+        if (!stk.empty() && stk.top() == num) {
+            operations.push_back("POP " + to_string(stk.top()));
+            stk.pop();
+        } else {
+            cout << "NO" << endl;
+            return 0;
+        }
+    }
+
+    for (const string& op : operations) {
+        cout << op << endl;
+    }
+
+    return 0;
+}
+```
+
+https://sunnywhy.com/sfbj/7/1/294
+```python
+def solve():
+    n=int(input())
+    s=list(map(int,input().split()))
+    stack=[]
+    cur=1
+
+    for i in s:
+    #cur模拟即将入栈的元素
+    #stack[-1]表示即将出栈的元素
+    #当栈为空；或即将出栈的元素与num不相等时，压入栈中
+        while cur<=i and (not stack or stack[-1]!=i):
+            stack.append(cur)
+            cur+=1
+        #否则就出栈
+        if stack and stack[-1]==i:
+            stack.pop()
+        else:
+            return 'No'
+    return 'Yes'
+
+print(solve())
+```
+
 #### lc-字符串解码-394
 https://leetcode.cn/problems/decode-string/description/
 
