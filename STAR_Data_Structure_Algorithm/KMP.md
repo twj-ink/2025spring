@@ -141,6 +141,85 @@ while True:
 
 ```
 
+```cpp
+// 输出不是该题，仅仅为等价的cpp代码参考
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include <string>
+#include <unordered_map>
+#include <stack>
+#include <algorithm>
+#include <cstdio>
+#include <cstring>
+using namespace std;
+
+vector<int> get_next(const string& s) {
+    int n = s.size();
+    int j = -1;
+    vector<int> nxt(n, -1);
+
+    for (int i = 1; i < n; i++) {
+        while (j != -1 && s[i] != s[j+1]) {
+            j = nxt[j];
+        }
+        if (s[i] == s[j+1]) {
+            j++;
+        }
+        nxt[i] = j;
+    }
+    return nxt;
+}
+
+bool kmp(const string& s, const string& t) {
+    int n = s.size(), m = t.size();
+    vector<int> nxt = get_next(t);
+    int j = -1;
+    for (int i = 0; i < n; i++) {
+        while (j != -1 && s[i] != t[j+1]) {
+            j = nxt[j];
+        }
+        if (s[i] == t[j+1]) {
+            j++;
+        }
+        if (j == m - 1) {
+            return true;
+        }
+    }
+    return false;
+}
+
+int main() {
+    // string s;
+    char s[1000005];
+    // while (cin >> s) {
+    while (scanf("%s", s) == 1) {
+        if (s[0] == '.' && s[1] == '\0') break;
+        // if (s==".") {
+        //     break;
+        // }
+        int n = strlen(s);
+        vector<int> nxt = get_next(s);
+        // for (int i=0;i<nxt.size();i++){
+        //     cout<<nxt[i]<<(i==nxt.size()-1?'\n':' ');
+        // }
+
+        int length = nxt.back() + 1;
+        int shortl = n - length;
+        int p = 1;
+        if (n%shortl==0) {
+            p = n / shortl;
+        }
+        // cout << p << '\n';
+        printf("%d\n", p);
+    }
+    return 0;    
+
+}
+```
+
+
 ### lc-最长快乐前缀-1392
 
 https://leetcode.cn/problems/longest-happy-prefix/

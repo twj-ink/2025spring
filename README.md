@@ -19,6 +19,7 @@
 <!-- TOC -->
 - [2025spring --\> Good Questions](#2025spring----good-questions)
     - [1. deque双端队列](#1-deque双端队列)
+      - [滑动窗口最大最小值](#滑动窗口最大最小值)
       - [oj-极差不小于K-29340](#oj-极差不小于k-29340)
       - [lc-滑动窗口最大值-239](#lc-滑动窗口最大值-239)
     - [2. 多指针](#2-多指针)
@@ -37,6 +38,7 @@
       - [cf-GameWithTriangles:Season2-G](#cf-gamewithtrianglesseason2-g)
       - [oj-有多少种合法的出栈顺序-27217](#oj-有多少种合法的出栈顺序-27217-1)
     - [6. binary\_search二分查找](#6-binary_search二分查找)
+      - [oj-牛奶模式](#oj-牛奶模式)
       - [cf-TwoColors-2075C](#cf-twocolors-2075c)
     - [7. 离线算法](#7-离线算法)
       - [lc-每一个查询的最大美丽值-2070](#lc-每一个查询的最大美丽值-2070)
@@ -66,6 +68,123 @@
 <!-- TOC -->
 
 ### 1. deque双端队列
+
+在涉及到**滑动窗口求最大最小值**的题目中会用到，具体策略是：
+* 求最大值，就维护一个递减队列，其中存的都是数组元素的**索引**
+* 这样队列的头部始终都是当前窗口的最大值
+
+#### 滑动窗口最大最小值
+http://dsa.openjudge.cn/2025dsachapter3/A/
+
+给定一个长度为n（n<=10^6）的数组。有一个大小为k的滑动窗口从数组的最左端移动到最右端。你可以看到窗口中的k个数字。窗口每次向右滑动一个数字的距离。
+
+下面是一个例子：数组是 [1 3 -1 -3 5 3 6 7]， k = 3。
+
+|窗口位置|最小值|最大值|
+|---|---|---|
+|[1  3  -1] -3  5  3  6  7 	|-1	|3|
+| 1 [3  -1  -3] 5  3  6  7 	|-3	|3|
+| 1  3 [-1  -3  5] 3  6  7 	|-3	|5|
+| 1  3  -1 [-3  5  3] 6  7 	|-3	|5|
+| 1  3  -1  -3 [5  3  6] 7 	|3	|6|
+| 1  3  -1  -3  5 [3  6  7]	|3	|7|
+
+你的任务是得到滑动窗口在每个位置时的最大值和最小值。
+
+```python
+from collections import deque
+
+def sliding(arr, k):
+    n = len(arr)
+    # minq维护严格递增的下标队列，保证队头始终是最小值的下标
+    minq, maxq = deque(), deque()
+    mins, maxs = [], []
+    if n == 0 or k == 0:
+        return [], []
+
+    for i in range(n):
+        # 保证minq是严格递增的
+        while minq and arr[minq[-1]] >= arr[i]:
+            minq.pop()
+        minq.append(i)
+
+        # 保证maxq是严格递减的
+        while maxq and arr[maxq[-1]] <= arr[i]:
+            maxq.pop()
+        maxq.append(i)
+
+        # 移除左侧元素，根据窗口左侧的索引来确定很方便
+        if minq[0] <= i - k:
+            minq.popleft()
+        if maxq[0] <= i - k:
+            maxq.popleft()
+        
+        # 当 i >= k-1 时窗口形成
+        if i >= k - 1:
+            mins.append(arr[minq[0]])
+            maxs.append(arr[maxq[0]])
+    
+    return mins, maxs
+
+n, k = map(int,input().split())
+arr = list(map(int, input().split()))
+mins, maxs = sliding(arr, k)
+print(*mins)
+print(*maxs)
+```
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <deque>
+using namespace std;
+
+int main() {
+    int n,k;
+    cin>>n>>k;
+    vector<int> nums(n);
+    for (int i = 0; i<n;i++) {
+        cin >> nums[i];
+    }
+
+    vector<int> mins, maxs;
+    deque<int> minq, maxq;
+
+    for (int i = 0; i < n; i++) {
+        while (!minq.empty() && (nums[minq.back()] >= nums[i])) {
+            minq.pop_back();
+        }
+        minq.push_back(i);
+        while (!maxq.empty() && (nums[maxq.back()] <= nums[i])) {
+            maxq.pop_back();
+        }
+        maxq.push_back(i);
+
+        if (minq.front() <= i - k) {
+            minq.pop_front();
+        }
+        if (maxq.front() <= i - k) {
+            maxq.pop_front();
+        }
+
+        if (i >= k - 1) {
+            mins.push_back(nums[minq.front()]);
+            maxs.push_back(nums[maxq.front()]);
+        }
+    }
+
+    for (int i = 0; i < mins.size(); i++) {
+        cout << mins[i] << " ";
+    }
+    cout << endl;
+    for (int i = 0; i < maxs.size(); i++) {
+        cout << maxs[i] << " ";
+    }
+    cout << endl;
+    return 0;   
+}
+```
+
 
 #### oj-极差不小于K-29340 
 http://cs101.openjudge.cn/practice/29340/
@@ -549,6 +668,93 @@ for _ in range(int(input())):
 
 ```
 
+(进一步，求值)
+
+```cpp
+// 中缀表达式 -> 后缀表达式 并求值，计算器
+
+#include <iostream>
+#include <vector>
+#include <deque>
+#include <string>
+#include <unordered_map>
+#include <stack>
+using namespace std;
+
+unordered_map<char, int> d{{'+',1},{'-',1},{'*',2},{'/',2},{'(',0}};
+
+int main() {
+    int n;
+    cin>>n;
+    while (n--) {
+        string s;
+        cin >> s;
+
+        // 中缀转后缀
+        vector<string> ans; // 存后序
+        stack<char> stk;
+        int i = 0;
+        while (i < s.size()) {
+            if (s[i]=='+'||s[i]=='-'||s[i]=='*'||s[i]=='/') {
+                while (!stk.empty() && d[stk.top()] >= d[s[i]]) {
+                    ans.push_back(string(1, stk.top()));
+                    stk.pop();
+                }
+                stk.push(s[i]);
+                i++;
+            } else if (s[i]=='(') {
+                stk.push('(');
+                i++;
+            } else if (s[i]==')') {
+                while (!stk.empty() && stk.top() != '(') {
+                    ans.push_back(string(1, stk.top()));
+                    stk.pop();
+                }
+                stk.pop(); // 弹掉左括号
+                i++;
+            } else {
+                // numbers
+                string curr;
+                curr += s[i];
+                i++;
+                
+                while (i < s.size() && !(s[i]=='+'||s[i]=='-'||s[i]=='*'||s[i]=='/'||s[i]=='('||s[i]==')')) {
+                    curr+=s[i];
+                    i++;
+                }
+                ans.push_back(curr);
+            }
+        }
+        while (!stk.empty()) {
+            ans.push_back(string(1, stk.top()));
+            stk.pop();
+        }
+        // for (int j = 0; j < ans.size();j++) {
+        //     cout<<ans[j]<<(j+1==ans.size()?'\n':' ');
+        // }
+
+        // 后缀求值
+        stack<long long> val;
+        for (auto& token : ans) {
+            if (token=="+"||token=="-"||token=="*"||token=="/"){
+                int right = val.top(); val.pop();
+                int left  = val.top(); val.pop();
+                if (token=="+") val.push(left+right);
+                if (token=="-") val.push(left-right);
+                if (token=="*") val.push(left*right);
+                if (token=="/") val.push(left/right);
+            } else {
+                val.push(stoll(token));
+            }
+        }
+
+        cout << val.top() << "\n";
+    }
+    return 0;    
+}
+
+```
+
 ### 4. linked_list链表
 #### lc-排序链表-148
 https://leetcode.cn/problems/sort-list/description/
@@ -834,7 +1040,114 @@ print(counts(n))
 
 
 ### 6. binary_search二分查找
+
+综合性质的二分查找往往是对某个属性作为答案进行的二分，例如绳子的长度、石头间的举例、电池的电量。而且需要满足的条件是：**这个性质的大小对于题目条件是否满足呈现单调性**。比如，当绳子长度小于等于某个值时，题目条件一直满足；而大于该值时则不满足了。此时就可以考虑对长度进行二分，对每一次二分的mid值进行检查是否满足题目条件，而这也就形成了一个固定的代码模板，即在主体部分是一个二分查找的代码，额外添加一个check函数来检查每一个二分值是否符合条件。
+
+说到底，二分都是对于**暴力枚举**的优化。当属性的数据范围过大时，一旦发现有**单调性**，二分是降低时间复杂度非常好的选择。
+
+#### oj-牛奶模式
+https://www.luogu.com.cn/problem/P2852
+
+> 农场主约翰连续记录了奶牛 N 天的牛奶质量，每天的质量用一个整数表示（范围 0∼1,000,000）。他想要找到一个连续子序列（模式），这个模式在记录中至少重复出现 K 次（可以重叠），并输出能满足条件的最长模式的长度。
+> 输入N，K，和N个数字代表每天的牛奶质量，输出最长模式长度
+
+例如输入K=2，序列为`1 2 3 2 3 2 3 1`，取模式`2323`，由于可以重复，恰好满足题目条件且为最优解。
+
+如何解决这个题？首先暴力枚举法肯定是：对可能的模式串长度进行枚举(1~n)，再对这个模式串的起点位置枚举，通过双重循环得到每一个子串的出现次数（这里可以使用字典保存），最后找出所有出现次数大于等于K的子串并找到最大长度即可。
+
+但是有一个问题是，输入的是N个整数，比如`vector<int> s(n)`，我们怎么对某一段序列`s[i]..s[j]`保存到字典里面记录次数（进行哈希）？退一步，假设输入的是一个字符串，假设对所有子串都存到字典里面，内存也是会相当大的。
+
+这里考虑一种哈希方式：**滚动哈希**（多项式哈希）。
+
+* 朴素做法：把每段子数组转换成 string 或直接逐元素比较 —— 会导致大量拷贝 / O(N⋅L) 时间、巨量内存。
+
+* 滚动哈希：把每段子数组用一个或两个整数（哈希值）表示，利用前缀哈希数组可以在 O(1) 得到任意子段的哈希。这样枚举所有长度为 L 的子段只需 O(N) 时间（每个子段一常数操作），再配合二分答案可得到整体复杂度可接受的算法。
+
+也就是说通过某种转化方式，将一串整数序列或者字符串变成一个整数，这样就可以在字典中放心保存了。而这里转化的方式是，构造一个**前缀哈希数组`vector<long long> h(n+1)`**，其中`h[i]`表示从0位置到i-1位置这段序列的哈希值。这样利用前缀和的思维得到`h[i] = (h[i-1] * base + a[i-1]) % MOD`，也就是
+
+$$
+H[i]=(a[0] \cdot base^{i-1} + a[1] \cdot base^{i-2} + ... + a[i-1] \cdot base^0) (mod MOD)
+$$
+
+其中将前一个哈希值进行乘base值是为了减少哈希的碰撞，且base的选取一般比数组的最大值要大；同时设置一个mod来取模。那么如何反向得到某一段的哈希？此时我们需要额外一个**指数数组`vector<long long> pow(n+1)`**，用来将先前的哈希值乘对于的幂次数来与后方的哈希值相减，也即得到0-based的从l到r（闭区间）的序列的哈希值是这样计算的：`get_hash = h[r+1] - h[l]*pow[r-l+1]`，也就是
+
+$$
+hash(l, r) = H[r+1]-H[l] \cdot base^{r-l+1} (mod MOD)
+$$
+
+好了，现在解决了如何哈希数组序列的问题，那如何优化时间复杂度？可以发现，假设对于长度L进行从小到大的遍历，其对于答案的影响也是满足**单调性**的，即若长度L出现了K次，比长度L短的序列**必然**也会出现K次，此时我们可以将遍历的区间折半到大于L的部分，也就是可以使用**二分**了。
+
+下面给出这个题的cpp代码：
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+using namespace std;
+
+const long long base = 1000003;
+const long long mod  = 1000000007;
+
+vector<long long> H;     // 前缀哈希
+vector<long long> pow;  // base 的幂
+
+// 获取子串 a[l..r] 的哈希值 (0-based, 包含 l 和 r)
+long long get_hash(int l, int r) {
+    return (H[r+1] - H[l] * pow[r-l+1] % mod + mod) % mod;
+}
+
+bool can_find(int L, const vector<int>& a, int k) {
+    int n = a.size();
+    if (L == 0) return true;
+
+    unordered_map<long long,int> cnt;
+
+    for (int i = 0; i + L <= n; i++) {
+        long long h = get_hash(i, i+L-1);
+        int c = ++cnt[h];
+        if (c >= k) return true;
+    }
+
+    return false;
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int n, k;
+    cin >> n >> k;
+    vector<int> a(n);
+    for (int i = 0; i < n; i++) cin >> a[i];
+
+    // 构造前缀哈希和 pow 数组
+    H.assign(n+1, 0);
+    pow.assign(n+1, 1);
+    for (int i = 1; i <= n; i++) {
+        H[i] = (H[i-1] * base + (a[i-1])) % mod;
+        pow[i] = (pow[i-1] * base) % mod;
+    }
+
+    // 二分答案
+    int lo = 1, hi = n, ans = 0;
+    while (lo <= hi) {
+        int mid = (lo + hi) / 2;
+        if (can_find(mid, a, k)) {
+            ans = mid;
+            lo = mid + 1;
+        } else {
+            hi = mid - 1;
+        }
+    }
+
+    cout << ans << "\n";
+    return 0;
+}
+```
+
+
 #### cf-TwoColors-2075C
+
 https://codeforces.com/contest/2075/problem/C
 
 使用`m-bisect_left(a,k)`找到能涂k个板子的颜色种类数目，然后初步数目为x*y，假设k>n-k，那么能涂k块的x种颜色一定也可以涂(n-k)块，也就是说x中包含了y，所以要减去min(x,y)，这些是用同一种颜色涂的方案数。
@@ -851,6 +1164,9 @@ for _ in range(int(input())):
         ans += x * y - min(x, y)
     print(ans)
 ```
+
+
+
 
 ### 7. 离线算法
 #### lc-每一个查询的最大美丽值-2070
@@ -1654,8 +1970,8 @@ class Solution:
 
 #### KMP算法
 
-[KMP算法和next数组](https://github.com/twj-ink/2025spring/blob/main/Data_Structure_Algorithm/KMP.md)
+[KMP算法和next数组](https://github.com/twj-ink/2025spring/blob/main/STAR_Data_Structure_Algorithm/KMP.md)
 
 #### Palindrome回文子串与子序列
 
-[回文子串与回文子序列](https://github.com/twj-ink/2025spring/blob/main/Data_Structure_Algorithm/palindromic.md)
+[回文子串与回文子序列](https://github.com/twj-ink/2025spring/blob/main/STAR_Data_Structure_Algorithm/palindromic.md)
