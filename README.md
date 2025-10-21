@@ -56,6 +56,7 @@
       - [lc-最大人工岛-827](#lc-最大人工岛-827)
       - [oj-骑士周游-28050](#oj-骑士周游-28050)
     - [12. tree \& graph](#12-tree--graph)
+      - [并查集DSU](并查集DSU)
       - [树上dp汇总](#树上dp汇总)
     - [13. trivial](#13-trivial)
       - [日期天数计算](#日期天数计算)
@@ -1755,7 +1756,99 @@ print(['fail','success'][dfs(n,r,c,1,s,r,c)])
 
 ### 12. tree & graph
 
-#### [树上dp汇总]()
+#### 并查集DSU
+
+```cpp
+struct UnionFind {
+    vector<int> parent;
+    vector<int> rank;
+    UnionFind(int n) {
+        parent.resize(n);
+        rank.resize(n, 0);
+        for (int i = 0; i < n; i++) parent[i] = i;
+    }
+    int find(int x) {
+        if (x != parent[x]) parent[x] = find(parent[x]);
+        return parent[x];
+    }
+    void unite(int x, int y) {
+        int rx = find(x), ry = find(y);
+        // if (rx != ry) parent[rx] = ry;
+        if (rx != ry) { // 小树链接到大树
+            if (rank[rx] > rank[ry]) parent[ry] = rx;
+            else if (rank[rx] < rank[ry]) parent[rx] = ry;
+            else {parent[ry] = rx; rank[rx]++;}
+        }
+    }
+};
+```
+
+http://cs101.openjudge.cn/practice/solution/50490034/
+
+这道题涉及到 **带敌对关系的并查集**。正常来说，如果有n个人，并查集中parent数组的长度就设置为`n+1`，而且常常题目的条件是给出若干组两个元素**属于同一类**。
+
+但是这个题很特别，给出的条件是若干组两个元素**不属于同一类**，且总类别只有两类（假设是A或者B，意味着对于每个元素要么属于A类要么属于B类），然后查询任意两个元素是否有关系。我们考虑将parent数组扩大一倍，成为`2*n+1`，并且假设前n个表示**属于A类**，后n个**属于B类**。
+
+这样当给出条件**a和b不属于同一类时**，我们可以将a和b+n、b和a+n分别链接起来。这样的好处是，当我们查询a和b是否是同一类的时候，假设`find(a)==find(b)`，说明属于同一类（因为它们可能同时和某个c+n链接了起来）；假设`find(a)==find(b+n)`，根据上述链接的原则可知此时a和b不属于同一类。这样就解决了问题。
+
+我们的DSU类的构造除了长度变成二倍之外，其余的函数不需要变化。只是在链接的时候需要链接两次、在查询的时候需要查询两次而已。下是cpp代码：
+
+```cpp
+#include <bits/stdc++.h>
+using namespace std;
+
+struct dsu
+{
+    vector<int> parent;
+    dsu(int n) {
+        parent.resize(n+1);
+        for (int i = 0; i < n + 1; i++) parent[i] = i;
+    }
+    int find(int x) {
+        if (x!=parent[x]) parent[x]=find(parent[x]);
+        return parent[x];
+    }
+    void unite(int x, int y) {
+        int rx = find(x), ry = find(y);
+        if (rx!=ry) {
+            parent[rx] = ry;
+        }
+    }
+    bool is_same(int x, int y) {
+        return find(x)==find(y);
+    }
+};
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(0);
+
+    int t;cin>>t;
+    while (t--){
+        int n,m;cin>>n>>m;
+        dsu D(2*n);
+        for (int i = 0; i < m; i++) {
+            char ch; int x,y;
+            cin>>ch>>x>>y;
+            if (ch=='D') {
+                D.unite(x,y+n);
+                D.unite(y,x+n);
+            } else {
+                if (D.is_same(x,y)) cout<<"In the same gang."<<endl;
+                else if (D.is_same(x,y+n)) cout<<"In different gangs."<<endl;
+                else cout<<"Not sure yet."<<endl;
+            }
+        }
+    }
+
+    return 0;
+}
+```
+
+
+#### [树上dp汇总](./STAR_Data_Structure_Algorithm/dp_on_tree.md)
+
+
 
 ### 13. trivial
 
